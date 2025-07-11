@@ -78,10 +78,19 @@ app = FastAPI(title="Cross-Chain Swap API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://medusa.tinyaibots.com",
+        "http://medusa.tinyaibots.com",
+        "https://localhost:9012",
+        "http://localhost:9012",
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "*"  # Fallback for development
+    ],
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
+    expose_headers=["*"],
 )
 
 from .routers import basket, metrics as metrics_router, events as events_router, health as health_router
@@ -150,6 +159,11 @@ class SwapTrackRequest(BaseModel):
 @app.get("/")
 def read_root():
     return {"message": "Cross-Chain Swap API"}
+
+@app.options("/{full_path:path}")
+async def options_handler(full_path: str):
+    """Handle CORS preflight requests."""
+    return {"message": "OK"}
 
 @app.post("/swap", summary="Create swap quote")
 def create_swap(req: SwapRequest):
@@ -514,6 +528,7 @@ def get_quote(
 @app.get("/chains")
 def get_supported_chains():
     """Get supported chains from Relay API."""
+    logger.info("Chains endpoint called")
     try:
         response = requests.get(
             f"{RELAY_BASE_URL}/chains",
@@ -540,8 +555,10 @@ def get_supported_chains():
             if not formatted and isinstance(chains, list):
                 formatted = chains
 
+            logger.info(f"Returning {len(formatted)} chains")
             return {"status": "success", "chains": formatted}
 
+        logger.error(f"Relay API error: {response.status_code} - {response.text}")
         return {
             "status": "error",
             "message": f"Failed to fetch chains: {response.status_code}",
@@ -549,6 +566,7 @@ def get_supported_chains():
         }
 
     except Exception as e:
+        logger.exception("Error in chains endpoint")
         asyncio.run(handle_agent_error("CrossChainSwapRouter", e))
         return {
             "status": "error",
@@ -558,6 +576,7 @@ def get_supported_chains():
 @app.get("/tokens/{chain_id}")
 def get_tokens_for_chain(chain_id: int):
     """Get tokens for a specific chain from Relay API."""
+    logger.info(f"Tokens endpoint called for chain {chain_id}")
     try:
         # First try to get from our cached token map
         from app.medusa_core.token_map import _REMOTE_MAP, load_token_map
