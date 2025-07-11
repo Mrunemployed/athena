@@ -278,13 +278,17 @@ const SwapInterface: React.FC = () => {
               <select 
                 value={sourceChain} 
                 onChange={(e) => setSourceChain(e.target.value)}
-                disabled={isLoading}
+                disabled={isLoading || isLoadingChains}
               >
-                {chains.map(chain => (
-                  <option key={chain.id} value={chain.id}>
-                    {chain.name}
-                  </option>
-                ))}
+                {isLoadingChains ? (
+                  <option>Loading chains...</option>
+                ) : (
+                  chains.map(chain => (
+                    <option key={chain.id} value={chain.id}>
+                      {chain.name}
+                    </option>
+                  ))
+                )}
               </select>
             </div>
             <div className="token-selector">
@@ -292,13 +296,17 @@ const SwapInterface: React.FC = () => {
               <select 
                 value={tokenIn} 
                 onChange={(e) => setTokenIn(e.target.value)}
-                disabled={isLoading}
+                disabled={isLoading || isLoadingTokens}
               >
-                {sourceTokens.map(token => (
-                  <option key={token.symbol} value={token.symbol}>
-                    {token.symbol}
-                  </option>
-                ))}
+                {isLoadingTokens ? (
+                  <option>Loading tokens...</option>
+                ) : (
+                  sourceTokens.map(token => (
+                    <option key={token.symbol} value={token.symbol}>
+                      {token.symbol}
+                    </option>
+                  ))
+                )}
               </select>
             </div>
             <div className="amount-input">
@@ -328,13 +336,17 @@ const SwapInterface: React.FC = () => {
               <select 
                 value={destinationChain} 
                 onChange={(e) => setDestinationChain(e.target.value)}
-                disabled={isLoading}
+                disabled={isLoading || isLoadingChains}
               >
-                {chains.map(chain => (
-                  <option key={chain.id} value={chain.id}>
-                    {chain.name}
-                  </option>
-                ))}
+                {isLoadingChains ? (
+                  <option>Loading chains...</option>
+                ) : (
+                  chains.map(chain => (
+                    <option key={chain.id} value={chain.id}>
+                      {chain.name}
+                    </option>
+                  ))
+                )}
               </select>
             </div>
             <div className="token-selector">
@@ -342,13 +354,17 @@ const SwapInterface: React.FC = () => {
               <select 
                 value={tokenOut} 
                 onChange={(e) => setTokenOut(e.target.value)}
-                disabled={isLoading}
+                disabled={isLoading || isLoadingTokens}
               >
-                {destinationTokens.map(token => (
-                  <option key={token.symbol} value={token.symbol}>
-                    {token.symbol}
-                  </option>
-                ))}
+                {isLoadingTokens ? (
+                  <option>Loading tokens...</option>
+                ) : (
+                  destinationTokens.map(token => (
+                    <option key={token.symbol} value={token.symbol}>
+                      {token.symbol}
+                    </option>
+                  ))
+                )}
               </select>
             </div>
             <div className="amount-display">
