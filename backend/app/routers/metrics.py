@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 
 from app.core.metrics import metrics_cache, compute_tvl
-from app.medusa_core.token_map import TOKEN_MAP
+from app.medusa_core.token_map import _REMOTE_MAP, load_token_map
 
 router = APIRouter()
 
@@ -23,5 +23,8 @@ def metrics_job(job_id: str):
 @router.get("/metrics/tvl")
 def metrics_tvl():
     """Return total value locked across tracked tokens."""
-    total = compute_tvl(TOKEN_MAP)
+    # Ensure token map is loaded
+    if not _REMOTE_MAP:
+        load_token_map()
+    total = compute_tvl(_REMOTE_MAP)
     return {"tvl": total}
