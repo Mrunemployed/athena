@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useAppKitAccount } from '@reown/appkit/react'
+import { useAppKitAccount, useAppKitAccount as useAppKitAccountEVM, useAppKitAccount as useAppKitAccountSolana } from '@reown/appkit/react'
 
 interface Chain {
   id: number
@@ -28,8 +28,17 @@ interface SwapStatus {
   chain_id?: number
 }
 
+interface WalletAddress {
+  address: string
+  chainId: number
+  namespace: string
+  chainName: string
+}
+
 const SwapInterface: React.FC = () => {
   const { address, isConnected } = useAppKitAccount()
+  const evmAccount = useAppKitAccountEVM({ namespace: 'eip155' })
+  const solanaAccount = useAppKitAccountSolana({ namespace: 'solana' })
   
   // State for form inputs
   const [sourceChain, setSourceChain] = useState<string>('1') // Ethereum mainnet
@@ -38,6 +47,7 @@ const SwapInterface: React.FC = () => {
   const [tokenOut, setTokenOut] = useState<string>('USDT')
   const [amount, setAmount] = useState<string>('')
   const [receiverAddress, setReceiverAddress] = useState<string>('')
+  const [selectedSourceAddress, setSelectedSourceAddress] = useState<string>('')
   
   // State for available options
   const [chains, setChains] = useState<Chain[]>([])
@@ -54,6 +64,58 @@ const SwapInterface: React.FC = () => {
   const [error, setError] = useState<string>('')
   
   const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://medusaapi.tinyaibots.com'
+
+  // Get all connected wallet addresses
+  const getConnectedAddresses = (): WalletAddress[] => {
+    const addresses: WalletAddress[] = []
+    
+    // Add EVM addresses
+    if (evmAccount.address) {
+      addresses.push({
+        address: evmAccount.address,
+        chainId: 1, // Default to Ethereum mainnet
+        namespace: 'eip155',
+        chainName: 'Ethereum'
+      })
+    }
+    
+    // Add Solana address
+    if (solanaAccount.address) {
+      addresses.push({
+        address: solanaAccount.address,
+        chainId: 1399811150, // Solana chain ID
+        namespace: 'solana',
+        chainName: 'Solana'
+      })
+    }
+    
+    return addresses
+  }
+
+  // Get available addresses for a specific chain
+  const getAddressesForChain = (chainId: string): WalletAddress[] => {
+    const addresses = getConnectedAddresses()
+    const chainIdNum = parseInt(chainId)
+    
+    // Filter addresses based on chain type
+    if (chainIdNum === 1399811150) {
+      // Solana chain
+      return addresses.filter(addr => addr.namespace === 'solana')
+    } else {
+      // EVM chains
+      return addresses.filter(addr => addr.namespace === 'eip155')
+    }
+  }
+
+  // Auto-select appropriate address when chain changes
+  useEffect(() => {
+    const availableAddresses = getAddressesForChain(sourceChain)
+    if (availableAddresses.length > 0) {
+      setSelectedSourceAddress(availableAddresses[0].address)
+    } else {
+      setSelectedSourceAddress('')
+    }
+  }, [sourceChain, evmAccount.address, solanaAccount.address])
 
   // Load supported chains
   useEffect(() => {
@@ -135,8 +197,8 @@ const SwapInterface: React.FC = () => {
 
   // Get quote for the swap
   const getQuote = async () => {
-    if (!isConnected || !address || !amount || !receiverAddress) {
-      setError('Please connect wallet and fill all fields')
+    if (!isConnected || !selectedSourceAddress || !amount || !receiverAddress) {
+      setError('Please connect wallet, select source address, and fill all fields')
       return
     }
 
@@ -151,7 +213,7 @@ const SwapInterface: React.FC = () => {
       url.searchParams.append('token_in', tokenIn)
       url.searchParams.append('token_out', tokenOut)
       url.searchParams.append('amount', amount)
-      url.searchParams.append('user_address', address)
+      url.searchParams.append('user_address', selectedSourceAddress)
       url.searchParams.append('receiver_address', receiverAddress)
 
       const response = await fetch(url.toString())
@@ -193,7 +255,7 @@ const SwapInterface: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          user: address,
+          user: selectedSourceAddress,
           source_chain: sourceChain,
           destination_chain: destinationChain,
           token_in: tokenIn,
@@ -264,6 +326,9 @@ const SwapInterface: React.FC = () => {
     return formatAmount(quote.result.gasEstimate, 6)
   }
 
+  // Get available addresses for current source chain
+  const availableSourceAddresses = getAddressesForChain(sourceChain)
+
   return (
     <div className="swap-interface">
       <div className="swap-header">
@@ -329,6 +394,30 @@ const SwapInterface: React.FC = () => {
               />
             </div>
           </div>
+
+          {/* Source Address Selector */}
+          {isConnected && availableSourceAddresses.length > 0 && (
+            <div className="address-selector">
+              <label>Source Address</label>
+              <select 
+                value={selectedSourceAddress} 
+                onChange={(e) => setSelectedSourceAddress(e.target.value)}
+                disabled={isLoading}
+              >
+                {availableSourceAddresses.map(addr => (
+                  <option key={addr.address} value={addr.address}>
+                    {addr.chainName}: {addr.address.slice(0, 6)}...{addr.address.slice(-4)}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          {isConnected && availableSourceAddresses.length === 0 && (
+            <div className="address-warning">
+              <p>⚠️ No compatible wallet addresses found for this chain. Please connect a wallet that supports {chains.find(c => c.id.toString() === sourceChain)?.name || 'this chain'}.</p>
+            </div>
+          )}
         </div>
 
         {/* Swap Direction Arrow */}
@@ -430,7 +519,7 @@ const SwapInterface: React.FC = () => {
           {!quote ? (
             <button 
               onClick={getQuote} 
-              disabled={isLoading || !isConnected}
+              disabled={isLoading || !isConnected || !selectedSourceAddress}
               className="primary"
             >
               {isLoading ? 'Getting Quote...' : 'Get Quote'}
