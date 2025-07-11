@@ -7,8 +7,8 @@ WORKDIR /app
 # Copy package files
 COPY frontend/package*.json ./
 
-# Install dependencies
-RUN npm ci
+# Install dependencies (using npm install since no package-lock.json exists)
+RUN npm install
 
 # Copy source code
 COPY frontend/ ./
@@ -26,7 +26,7 @@ WORKDIR /app
 COPY frontend/package*.json ./
 
 # Install all dependencies (including dev dependencies for vite preview)
-RUN npm ci
+RUN npm install
 
 # Copy built assets from build stage
 COPY --from=build /app/dist ./dist
