@@ -1,0 +1,94 @@
+---
+alwaysApply: true
+---
+
+## Cursor Instructions for Swap Tool Integration
+
+These instructions guide you to implement a swap tool using **relay.link** APIs for backend chain/token operations and **reown.cloud** APIs for frontend wallet connection and signing. The approach is modular, separating backend and frontend logic for clarity and maintainability.
+
+### 1. Backend: relay.link API Integration
+
+Relay document: https://docs.relay.link/references/api/overview
+
+#### a. Show List of All Available Chains and Tokens
+
+- **Fetch Chains**:  
+  Call the `Get Chains` endpoint to retrieve all supported chains.
+- **Fetch Tokens**:  
+  For each chain, use the appropriate endpoint to fetch available tokens.
+
+**Example Steps:**
+1. Call `GET /chains` to get all chains.
+2. For each chain, call `GET /tokens?chainId={chainId}` to list tokens.
+
+#### b. SWAP Interface Logic
+
+- **Source Selection**:  
+  Present dropdowns for source chain, token, and amount (populated from above).
+- **Target Selection**:  
+  Present dropdowns for target chain, token, and input for recipient wallet address.
+
+#### c. Show Swap Quote
+
+- **Get Quote**:  
+  Use the `Get Quote` API to fetch an executable quote for the swap based on user selections (source/target chain, token, amount, recipient address).
+- **Display Quote**:  
+  Show the returned quote details (amounts, fees, estimated time, etc.) to the user.
+
+#### d. Execute Swap
+
+- **On Swap Confirmation**:  
+  When the user confirms, call the swap execution endpoint with the selected parameters and user signature (collected via frontend wallet connection).
+- **Track Status**:  
+  Optionally, poll the `Get Execution Status` endpoint to track swap progress.
+
+### 2. Frontend: reown.cloud API Integration
+
+#### a. Wallet Connection
+
+- **Initialize WalletConnect/SignClient**:  
+  Use your Reown Cloud Project ID to initialize the wallet connection.
+- **Prompt Connection**:  
+  Present a "Connect Wallet" button. On click, initiate a pairing session (QR code or deep link as appropriate).
+
+#### b. Session and Account Management
+
+- **Handle Session Events**:  
+  Listen for session proposals, approvals, and account changes to update UI state.
+
+#### c. Transaction Signing
+
+- **Sign Swap Transaction**:  
+  When executing a swap, prompt the user to sign the transaction using their connected wallet.
+- **Respond to Signing Requests**:  
+  Use the signing API to send the transaction data to the wallet and receive the signature.
+
+### 3. End-to-End Flow
+
+1. **User connects wallet** (via reown.cloud).
+2. **User selects** source chain, token, amount, target chain, token, and recipient address (data from relay.link).
+3. **System fetches and displays swap quote** (relay.link).
+4. **User confirms swap**.
+5. **Frontend prompts user to sign** the transaction (reown.cloud).
+6. **Backend submits signed transaction** to relay.link for execution.
+7. **System tracks and displays swap status**.
+
+### 4. Example API Sequence
+
+| Step                     | API (relay.link)        | API (reown.cloud)            | Description                                |
+|--------------------------|------------------------|------------------------------|--------------------------------------------|
+| Fetch chains/tokens      | `GET /chains`          |                              | Populate selection dropdowns               |
+|                          | `GET /tokens`          |                              |                                            |
+| Wallet connect           |                        | `SignClient.init`            | Initialize wallet connection               |
+| Get swap quote           | `POST /quote`          |                              | Fetch quote for user-selected parameters   |
+| Sign transaction         |                        | `signClient.request`         | Prompt user to sign swap transaction       |
+| Execute swap             | `POST /execute/swap`   |                              | Submit signed transaction for execution    |
+| Track status             | `GET /status`          |                              | Monitor swap progress                      |
+
+### 5. Key Implementation Notes
+
+- All chain and token data should be dynamically fetched to ensure up-to-date options[1].
+- Wallet connection and signing must use reown.cloud's session and event model for secure, user-authorized operations[2].
+- Ensure user feedback at each step (loading, error, success states).
+- Handle edge cases: rejected signatures, network errors, unsupported chains/tokens.
+

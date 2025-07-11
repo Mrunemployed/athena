@@ -1,13 +1,12 @@
 import { createAppKit } from '@reown/appkit/react'
-
 import { WagmiProvider } from 'wagmi'
-
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ActionButtonList } from './components/ActionButtonList'
 import { InfoList } from './components/InfoList'
-import { projectId, metadata, networks, wagmiAdapter , solanaWeb3JsAdapter} from './config'
-
+import SwapInterface from './components/SwapInterface'
+import { projectId, metadata, networks, wagmiAdapter, solanaWeb3JsAdapter } from './config'
 import "./App.css"
+import { useState } from 'react'
 
 const queryClient = new QueryClient()
 
@@ -17,10 +16,10 @@ const generalConfig = {
   networks,
   themeMode: 'light' as const,
   features: {
-    analytics: true // Optional - defaults to your Cloud configuration
+    analytics: true
   },
   themeVariables: {
-    '--w3m-accent': '#000000',
+    '--w3m-accent': '#6366f1',
   }
 }
 
@@ -31,24 +30,77 @@ createAppKit({
 })
 
 export function App() {
+  const [activeTab, setActiveTab] = useState<'wallet' | 'swap'>('swap')
 
   return (
-    <div className={"pages"}>
-      <img src="/reown.svg" alt="Reown" style={{ width: '150px', height: '150px' }} />
-      <h1>AppKit Wagmi+solana React dApp Example</h1>
-      <WagmiProvider config={wagmiAdapter.wagmiConfig}>
-        <QueryClientProvider client={queryClient}>
-            <appkit-button />
-            <ActionButtonList />
-            <div className="advice">
-              <p>
-                This projectId only works on localhost. <br/>
-                Go to <a href="https://cloud.reown.com" target="_blank" className="link-button" rel="Reown Cloud">Reown Cloud</a> to get your own.
-              </p>
+    <div className="app">
+      <header className="header">
+        <div className="header-content">
+          <div className="logo-section">
+            <img src="/reown.svg" alt="Reown" className="logo" />
+            <h1 className="title">Athena Web3 Dashboard</h1>
+          </div>
+          <p className="subtitle">Multi-chain wallet connection and cross-chain swaps</p>
+        </div>
+      </header>
+
+      <main className="main-content">
+        <WagmiProvider config={wagmiAdapter.wagmiConfig}>
+          <QueryClientProvider client={queryClient}>
+            <div className="dashboard">
+              {/* Tab Navigation */}
+              <div className="tab-navigation">
+                <button 
+                  className={`tab-button ${activeTab === 'swap' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('swap')}
+                >
+                  Cross-Chain Swap
+                </button>
+                <button 
+                  className={`tab-button ${activeTab === 'wallet' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('wallet')}
+                >
+                  Wallet Info
+                </button>
+              </div>
+
+              {/* Tab Content */}
+              {activeTab === 'swap' && (
+                <SwapInterface />
+              )}
+
+              {activeTab === 'wallet' && (
+                <>
+                  <div className="wallet-section">
+                    <div className="wallet-header">
+                      <h2>Wallet Connection</h2>
+                      <p>Connect your wallet to get started</p>
+                    </div>
+                    <div className="wallet-actions">
+                      <appkit-button />
+                      <ActionButtonList />
+                    </div>
+                  </div>
+
+                  <div className="info-section">
+                    <InfoList />
+                  </div>
+
+                  <div className="advice-section">
+                    <div className="advice-card">
+                      <h3>Getting Started</h3>
+                      <p>
+                        This projectId only works on localhost. <br/>
+                        Visit <a href="https://cloud.reown.com" target="_blank" className="link-button" rel="noopener noreferrer">Reown Cloud</a> to get your own project ID.
+                      </p>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
-            <InfoList />
-        </QueryClientProvider>
-      </WagmiProvider>
+          </QueryClientProvider>
+        </WagmiProvider>
+      </main>
     </div>
   )
 }

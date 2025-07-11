@@ -13,7 +13,6 @@ export const InfoList = () => {
     const {address, caipAddress, isConnected, status, embeddedWalletInfo } = useAppKitAccount();
     const eip155AccountState = useAppKitAccount({ namespace: 'eip155' })
     const solanaAccountState = useAppKitAccount({ namespace: 'solana' })
-    //  const bip122AccountState = useAppKitAccount({ namespace: 'bip122' }) // for bitcoin
     const events = useAppKitEvents()
     const { walletInfo } = useWalletInfo()
 
@@ -22,50 +21,52 @@ export const InfoList = () => {
     }, [events]);
 
   return (
-    < >
-        <section>
-            <h2>All Addresses</h2>
+    <>
+        <div className="card">
+            <h2>Wallet Addresses</h2>
             <pre>
-                Address EVM : {eip155AccountState.address}<br />
-                Addresss Solana: {solanaAccountState.address}<br />
+                <strong>EVM Address:</strong> {eip155AccountState.address || 'Not connected'}<br />
+                <strong>Solana Address:</strong> {solanaAccountState.address || 'Not connected'}<br />
             </pre>
-        </section>
-        <section>
-            <h2>useAppKit</h2>
+        </div>
+        
+        <div className="card">
+            <h2>Connection Status</h2>
             <pre>
-                Address: {address}<br />
-                caip Address: {caipAddress}<br />
-                Connected: {isConnected.toString()}<br />
-                Status: {status}<br />
-                Account Type: {embeddedWalletInfo?.accountType}<br />
-                {embeddedWalletInfo?.user?.email && (`Email: ${embeddedWalletInfo?.user?.email}\n`)}
-                {embeddedWalletInfo?.user?.username && (`Username: ${embeddedWalletInfo?.user?.username}\n`)}
+                <strong>Address:</strong> {address || 'Not connected'}<br />
+                <strong>CAIP Address:</strong> {caipAddress || 'Not connected'}<br />
+                <strong>Connected:</strong> {isConnected ? '✅ Yes' : '❌ No'}<br />
+                <strong>Status:</strong> {status}<br />
+                <strong>Account Type:</strong> {embeddedWalletInfo?.accountType || 'N/A'}<br />
+                {embeddedWalletInfo?.user?.email && (`<strong>Email:</strong> ${embeddedWalletInfo?.user?.email}\n`)}
+                {embeddedWalletInfo?.user?.username && (`<strong>Username:</strong> ${embeddedWalletInfo?.user?.username}\n`)}
             </pre>
-        </section>
+        </div>
 
-        <section>
-            <h2>Theme</h2>
+        <div className="card">
+            <h2>Theme Settings</h2>
             <pre>
-                Theme: {kitTheme.themeMode}<br />
+                <strong>Theme Mode:</strong> {kitTheme.themeMode}<br />
             </pre>
-        </section>
+        </div>
 
-        <section>
-            <h2>State</h2>
+        <div className="card">
+            <h2>App State</h2>
             <pre>
-                activeChain: {state.activeChain}<br />
-                loading: {state.loading.toString()}<br />
-                open: {state.open.toString()}<br />
-                selectedNetworkId: {state.selectedNetworkId?.toString()}<br />
+                <strong>Active Chain:</strong> {state.activeChain || 'None'}<br />
+                <strong>Loading:</strong> {state.loading ? '🔄 Yes' : '✅ No'}<br />
+                <strong>Modal Open:</strong> {state.open ? '🔓 Yes' : '🔒 No'}<br />
+                <strong>Selected Network ID:</strong> {state.selectedNetworkId?.toString() || 'None'}<br />
             </pre>
-        </section>
+        </div>
 
-        <section>
-            <h2>WalletInfo</h2>
+        <div className="card">
+            <h2>Wallet Information</h2>
             <pre>
-                Name: {JSON.stringify(walletInfo)}<br />
+                <strong>Wallet Details:</strong><br />
+                {JSON.stringify(walletInfo, null, 2)}
             </pre>
-        </section>
+        </div>
     </>
   )
 }
