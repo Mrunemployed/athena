@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from typing import Any, Dict
 
 from app.db.db import db, scheduler
-from app.medusa_core.token_map import TOKEN_MAP
+from app.medusa_core.token_map import _REMOTE_MAP, load_token_map
 
 def log_event(event: Dict[str, Any]) -> None:
     if db is None:
@@ -72,7 +72,10 @@ def compute_metrics() -> None:
         if stat["total"]:
             stat["avg_latency"] /= stat["total"]
 
-    tvl = compute_tvl(TOKEN_MAP)
+    # Ensure token map is loaded
+    if not _REMOTE_MAP:
+        load_token_map()
+    tvl = compute_tvl(_REMOTE_MAP)
     metrics_cache.update({
         "timestamp": now.isoformat(),
         "running_jobs": running,
