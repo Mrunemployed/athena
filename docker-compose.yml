@@ -15,7 +15,7 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: new-frontend/Dockerfile
+      dockerfile: frontend/Dockerfile
       args:
         VITE_PROJECT_ID: ${VITE_PROJECT_ID}
         NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3100}
