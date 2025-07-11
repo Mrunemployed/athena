@@ -10,23 +10,19 @@ import { useState } from 'react'
 
 const queryClient = new QueryClient()
 
-const generalConfig = {
+// Create modal with single object parameter
+createAppKit({
+  adapters: [wagmiAdapter, solanaWeb3JsAdapter],
   projectId,
   metadata,
   networks,
-  themeMode: 'light' as const,
+  themeMode: 'dark' as const,
   features: {
     analytics: true
   },
   themeVariables: {
     '--w3m-accent': '#6366f1',
   }
-}
-
-// Create modal
-createAppKit({
-  adapters: [wagmiAdapter, solanaWeb3JsAdapter],
-  ...generalConfig,
 })
 
 export function App() {

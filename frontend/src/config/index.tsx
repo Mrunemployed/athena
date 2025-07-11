@@ -12,9 +12,9 @@ if (!projectId) {
 }
 
 export const metadata = {
-    name: 'AppKit',
-    description: 'AppKit Example',
-    url: 'https://reown.com', // origin must match your domain & subdomain
+    name: 'Athena Web3 Dashboard',
+    description: 'Multi-chain wallet connection and cross-chain swaps',
+    url: 'https://medusa.tinyaibots.com', // Updated to match actual domain
     icons: ['https://avatars.githubusercontent.com/u/179229932']
   }
 

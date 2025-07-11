@@ -127,8 +127,12 @@ const SwapInterface: React.FC = () => {
         console.log('Chains response status:', response.status)
         const data = await response.json()
         console.log('Chains data:', data)
-        if (data.chains) {
-          setChains(data.chains)
+        if (data.chains && Array.isArray(data.chains)) {
+          // Ensure all chains have valid id and name properties
+          const validChains = data.chains.filter((chain: any) => 
+            chain && typeof chain.id !== 'undefined' && chain.name
+          )
+          setChains(validChains)
         }
       } catch (err) {
         console.error('Failed to load chains:', err)
@@ -151,8 +155,12 @@ const SwapInterface: React.FC = () => {
         console.log('Source tokens response status:', response.status)
         const data = await response.json()
         console.log('Source tokens data:', data)
-        if (data.tokens) {
-          setSourceTokens(data.tokens)
+        if (data.tokens && Array.isArray(data.tokens)) {
+          // Ensure all tokens have valid properties
+          const validTokens = data.tokens.filter((token: any) => 
+            token && token.symbol && token.address
+          )
+          setSourceTokens(validTokens)
         }
       } catch (err) {
         console.error('Failed to load source tokens:', err)
@@ -175,8 +183,12 @@ const SwapInterface: React.FC = () => {
         console.log('Destination tokens response status:', response.status)
         const data = await response.json()
         console.log('Destination tokens data:', data)
-        if (data.tokens) {
-          setDestinationTokens(data.tokens)
+        if (data.tokens && Array.isArray(data.tokens)) {
+          // Ensure all tokens have valid properties
+          const validTokens = data.tokens.filter((token: any) => 
+            token && token.symbol && token.address
+          )
+          setDestinationTokens(validTokens)
         }
       } catch (err) {
         console.error('Failed to load destination tokens:', err)
@@ -415,7 +427,7 @@ const SwapInterface: React.FC = () => {
 
           {isConnected && availableSourceAddresses.length === 0 && (
             <div className="address-warning">
-              <p>⚠️ No compatible wallet addresses found for this chain. Please connect a wallet that supports {chains.find(c => c.id.toString() === sourceChain)?.name || 'this chain'}.</p>
+              <p>⚠️ No compatible wallet addresses found for this chain. Please connect a wallet that supports {chains.find(c => c.id?.toString() === sourceChain)?.name || 'this chain'}.</p>
             </div>
           )}
         </div>
