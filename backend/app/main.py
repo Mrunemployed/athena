@@ -446,11 +446,11 @@ def get_quote(
         params = {
             "originChainId": int(source_chain),
             "destinationChainId": int(destination_chain),
-            "inputToken": input_token_address,
-            "outputToken": output_token_address,
-            "inputAmount": input_amount,
+            "originCurrency": input_token_address,
+            "destinationCurrency": output_token_address,
+            "amount": input_amount,
             "user": user_address,
-            "receiver": receiver_address or user_address,
+            "recipient": receiver_address or user_address,
             "tradeType": "EXACT_INPUT",
         }
         

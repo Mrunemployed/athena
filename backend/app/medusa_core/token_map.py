@@ -16,48 +16,8 @@ _CACHE_TTL = 3600  # 1 hour
 
 CHAIN_IDS : Dict[int, str] = {}
 
-def _fetch_tokens_for_chain(chain_id: int) -> Dict[str, str]:
-    """Fetch tokens for a single chain via Relay."""
-    try:
-        # Try different possible token endpoints
-        endpoints = [
-            f"{RELAY_BASE_URL}/tokens/{chain_id}",
-            f"{RELAY_BASE_URL}/v1/tokens/{chain_id}",
-            f"{RELAY_BASE_URL}/api/v1/tokens/{chain_id}",
-            f"{RELAY_BASE_URL}/currencies/{chain_id}",
-            f"{RELAY_BASE_URL}/v1/currencies/{chain_id}",
-        ]
-        
-        for endpoint in endpoints:
-            try:
-                resp = requests.get(endpoint, timeout=10)
-                if resp.ok:
-                    data = resp.json()
-                    logger.debug(f"Token endpoint {endpoint} returned: {data}")
-                    tokens = data.get("tokens") or data.get("result") or data.get("currencies") or []
-                    if isinstance(tokens, dict):
-                        tokens = list(tokens.values())
-                    mapping: Dict[str, str] = {}
-                    for t in tokens:
-                        if isinstance(t, dict):
-                            sym = t.get("symbol")
-                            addr = t.get("address")
-                            if sym and addr:
-                                mapping[sym.upper()] = addr
-                    if mapping:
-                        logger.info(f"Successfully fetched {len(mapping)} tokens from {endpoint}")
-                        return mapping
-                elif resp.status_code != 404:
-                    logger.warning(f"Token endpoint {endpoint} returned {resp.status_code}")
-            except Exception as exc:
-                logger.debug(f"Error trying endpoint {endpoint}: {exc}")
-                continue
-                
-        logger.warning(f"No working token endpoint found for chain {chain_id}")
-        return {}
-    except Exception as exc:
-        logger.exception("Error fetching tokens for chain %s: %s", chain_id, exc)
-    return {}
+# Removed _fetch_tokens_for_chain function as token data is included in /chains response
+# according to Relay API documentation: https://docs.relay.link/references/api/get-chains
 
 
 def load_token_map() -> None:
@@ -66,21 +26,23 @@ def load_token_map() -> None:
     mapping: Dict[int, Dict[str, str]] = {}
     
     try:
-        # Fetch chains from Relay API
+        # Fetch chains from Relay API - using documented endpoint
         resp = requests.get(f"{RELAY_BASE_URL}/chains", timeout=10)
         if resp.ok:
             data = resp.json()
             logger.debug(f"Chains response structure: {type(data)}")
             logger.debug(f"Chains response keys: {list(data.keys()) if isinstance(data, dict) else 'Not a dict'}")
             
-            chains = data.get("chains") or data.get("result") or []
+            # According to Relay API docs: https://docs.relay.link/references/api/get-chains
+            chains = data.get("chains", [])
             logger.debug(f"Found {len(chains)} chains")
             
             for i, chain in enumerate(chains):
                 logger.debug(f"Chain {i} structure: {type(chain)}")
                 logger.debug(f"Chain {i} keys: {list(chain.keys()) if isinstance(chain, dict) else 'Not a dict'}")
                 
-                cid = chain.get("id") or chain.get("chainId")
+                # According to docs, chain ID is in "id" field
+                cid = chain.get("id")
                 if cid is None:
                     continue
                 
@@ -91,55 +53,54 @@ def load_token_map() -> None:
                     logger.warning(f"Invalid chain ID: {cid}")
                     continue
                     
+                # According to docs, chain name is in "name" or "displayName" field
                 chain_name = chain.get("name") or chain.get("displayName")
                 if chain_name and isinstance(chain_name, str):
                     CHAIN_IDS[cid_int] = chain_name
                 symbol_map: Dict[str, str] = {}
                 
                 # Add native token (like ETH, MATIC, etc.)
+                # According to docs, currency is an object with symbol, name, address fields
                 native_currency = chain.get("currency")
                 logger.debug(f"Native currency for chain {cid_int}: {native_currency} (type: {type(native_currency)})")
                 
-                if native_currency:
-                    if isinstance(native_currency, dict):
-                        # Handle case where currency is a dict with symbol field
-                        currency_symbol = native_currency.get("symbol") or native_currency.get("name")
-                        if currency_symbol and isinstance(currency_symbol, str):
-                            symbol_map[currency_symbol.upper()] = "0x0000000000000000000000000000000000000000"
-                    elif isinstance(native_currency, str):
-                        symbol_map[native_currency.upper()] = "0x0000000000000000000000000000000000000000"
+                if native_currency and isinstance(native_currency, dict):
+                    # Use the documented currency.symbol field
+                    currency_symbol = native_currency.get("symbol")
+                    if currency_symbol and isinstance(currency_symbol, str):
+                        # For native tokens, use zero address as per Relay convention
+                        symbol_map[currency_symbol.upper()] = "0x0000000000000000000000000000000000000000"
+                        logger.debug(f"Added native token {currency_symbol} for chain {cid_int}")
                 
-                # Add ERC20 tokens
-                tokens = (
-                    chain.get("erc20Currencies")
-                    or chain.get("featuredTokens")
-                    or []
-                )
+                # Add ERC20 tokens from documented fields
+                # According to docs, tokens are in "erc20Currencies" and "featuredTokens" arrays
+                erc20_tokens = chain.get("erc20Currencies", [])
+                featured_tokens = chain.get("featuredTokens", [])
                 
-                if isinstance(tokens, dict):
-                    tokens = list(tokens.values())
-                    
-                for t in tokens:
-                    if not isinstance(t, dict):
-                        continue
-                    sym = t.get("symbol")
-                    addr = t.get("address")
-                    if sym and addr:
-                        symbol_map[sym.upper()] = addr
+                # Process ERC20 tokens
+                for t in erc20_tokens:
+                    if isinstance(t, dict):
+                        sym = t.get("symbol")
+                        addr = t.get("address")
+                        if sym and addr and isinstance(sym, str) and isinstance(addr, str):
+                            symbol_map[sym.upper()] = addr
+                            logger.debug(f"Added ERC20 token {sym} ({addr}) for chain {cid_int}")
+                
+                # Process featured tokens
+                for t in featured_tokens:
+                    if isinstance(t, dict):
+                        sym = t.get("symbol")
+                        addr = t.get("address")
+                        if sym and addr and isinstance(sym, str) and isinstance(addr, str):
+                            symbol_map[sym.upper()] = addr
+                            logger.debug(f"Added featured token {sym} ({addr}) for chain {cid_int}")
                 
                 if symbol_map:
                     mapping[cid_int] = symbol_map
-                    logger.info(f"Loaded {len(symbol_map)} tokens for chain {cid_int} ({CHAIN_IDS[cid_int]})")
+                    logger.info(f"Loaded {len(symbol_map)} tokens for chain {cid_int} ({CHAIN_IDS.get(cid_int, 'Unknown')})")
                     
     except Exception as exc:
         logger.exception("Error loading token map via /chains: %s", exc)
-        # If chains endpoint fails, try individual chain endpoints
-        known_chains = [1, 137, 56, 42161, 10, 11155111]  # Common chains
-        for cid in known_chains:
-            tokens = _fetch_tokens_for_chain(cid)
-            if tokens:
-                mapping[cid] = tokens
-                logger.info(f"Loaded {len(tokens)} tokens for chain {cid} via individual endpoint")
 
     if mapping:
         _REMOTE_MAP = mapping
