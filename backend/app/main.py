@@ -197,7 +197,7 @@ def create_swap(req: SwapRequest):
         if endpoint:
             info["endpoint"] = endpoint
         steps.append(info)
-    return {"status": "success", "quote": quote, "swap_id": swap_id, "steps": steps}
+    return {"status": "success", "steps": quote, "swap_id": swap_id}
 
 
 
