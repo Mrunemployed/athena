@@ -97,13 +97,21 @@ const SwapInterface: React.FC = () => {
     const addresses = getConnectedAddresses()
     const chainIdNum = parseInt(chainId)
     
+    console.log('getAddressesForChain called with chainId:', chainId, 'chainIdNum:', chainIdNum)
+    console.log('All available addresses:', addresses)
+    
     // Filter addresses based on chain type
-    if (chainIdNum === 1399811150) {
+    // Solana chain ID from Relay API is 792703809
+    if (chainIdNum === 792703809) {
       // Solana chain
-      return addresses.filter(addr => addr.namespace === 'solana')
+      const solanaAddresses = addresses.filter(addr => addr.namespace === 'solana')
+      console.log('Filtered Solana addresses:', solanaAddresses)
+      return solanaAddresses
     } else {
       // EVM chains
-      return addresses.filter(addr => addr.namespace === 'eip155')
+      const evmAddresses = addresses.filter(addr => addr.namespace === 'eip155')
+      console.log('Filtered EVM addresses:', evmAddresses)
+      return evmAddresses
     }
   }
 
