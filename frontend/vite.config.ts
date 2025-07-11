@@ -10,6 +10,7 @@ export default defineConfig({
   preview: {
     host: '0.0.0.0',
     port: 3000,
-    allowedHosts: ['medusa.tinyaibots.com', 'localhost', '127.0.0.1'],
+    strictPort: true,
+    allowedHosts: 'all',
   },
 })

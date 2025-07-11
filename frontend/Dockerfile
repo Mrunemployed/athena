@@ -28,11 +28,12 @@ COPY frontend/package*.json ./
 # Install all dependencies (including dev dependencies for vite preview)
 RUN npm install
 
-# Copy built assets from build stage
+# Copy built assets and config from build stage
 COPY --from=build /app/dist ./dist
+COPY --from=build /app/vite.config.ts ./
 
 # Expose port 3000 to match docker-compose.yml
 EXPOSE 3000
 
 # Start the preview server to serve the built files
-CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "3000"] 
+CMD ["npx", "vite", "preview", "--host", "0.0.0.0", "--port", "3000"] 
