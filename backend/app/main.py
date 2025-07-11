@@ -423,11 +423,17 @@ def get_quote(
             raise HTTPException(status_code=404,detail="Dest chain not supported")
         input_amount = amount
         
+        # Resolve token addresses
+        input_token_address = resolve_token_address(src_chain_id, token_in)
+        output_token_address = resolve_token_address(dst_chain_id, token_out)
+        
+        logger.info(f"Token resolution - {token_in} -> {input_token_address}, {token_out} -> {output_token_address}")
+        
         params = {
             "originChainId": int(source_chain),
             "destinationChainId": int(destination_chain),
-            "inputToken": resolve_token_address(src_chain_id, token_in),
-            "outputToken": resolve_token_address(dst_chain_id, token_out),
+            "inputToken": input_token_address,
+            "outputToken": output_token_address,
             "inputAmount": input_amount,
             "user": user_address,
             "receiver": receiver_address or user_address,
@@ -553,6 +559,28 @@ def get_supported_chains():
 def get_tokens_for_chain(chain_id: int):
     """Get tokens for a specific chain from Relay API."""
     try:
+        # First try to get from our cached token map
+        from app.medusa_core.token_map import _REMOTE_MAP, load_token_map
+        
+        # Ensure token map is loaded
+        if chain_id not in _REMOTE_MAP:
+            load_token_map()
+        
+        cached_tokens = _REMOTE_MAP.get(chain_id, {})
+        if cached_tokens:
+            tokens = [
+                {
+                    "address": addr,
+                    "symbol": symbol,
+                    "name": symbol,  # Use symbol as name for now
+                    "decimals": 18,  # Default decimals
+                    "logoURI": None,
+                }
+                for symbol, addr in cached_tokens.items()
+            ]
+            return {"status": "success", "tokens": tokens}
+        
+        # Fallback to direct Relay API call
         response = requests.get(
             f"{RELAY_BASE_URL}/chains",
             timeout=10,

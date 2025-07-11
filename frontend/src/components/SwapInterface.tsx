@@ -43,7 +43,7 @@ const SwapInterface: React.FC = () => {
   // State for form inputs
   const [sourceChain, setSourceChain] = useState<string>('1') // Ethereum mainnet
   const [destinationChain, setDestinationChain] = useState<string>('137') // Polygon
-  const [tokenIn, setTokenIn] = useState<string>('USDC')
+  const [tokenIn, setTokenIn] = useState<string>('ETH')
   const [tokenOut, setTokenOut] = useState<string>('USDT')
   const [amount, setAmount] = useState<string>('')
   const [receiverAddress, setReceiverAddress] = useState<string>('')

@@ -9,42 +9,6 @@ from .relay import RELAY_BASE_URL
 
 logger = logging.getLogger(__name__)
 
-TOKEN_MAP = {
-    1: {
-        'USDT': '0xdAC17F958D2ee523a2206206994597C13D831ec7',
-        'WETH': '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-        'USDC': '0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
-        'DAI': '0x6B175474E89094C44Da98b954EedeAC495271d0F',
-        'LINK': '0x514910771AF9Ca656af840dff83E8264EcF986CA',
-        'UNI': '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984',
-        'AAVE': '0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9',
-        'CRV': '0xD533a949740bb3306d119CC777fa900bA034cd52',
-        'MATIC': '0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0',
-        'BNB': '0xB8c77482e45F1F44de1745F52C74426C631bdd52',
-        'ARB': '0x912CE59144191C1204E64559FE8253a0e49E6548',
-        'OP': '0x4200000000000000000000000000000000000042',
-        'AVAX': '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7',
-        'FTM': '0x4e15361fd6b4bb609fa63c81a2be19d873717870',
-        'SETH': '0x5e74c9036fb86bd7ecdcb084a0673efc32ea31cb',
-    },
-    11155111: {
-        'USDT': '0x94c5fE3A5810C7A0545B2c2255bB9A1aA4c1a7a9',
-        'WETH': '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6',
-    },
-    56: {
-        'USDT': '0x55d398326f99059fF775485246999027B3197955',
-        'WETH': '0x2170Ed0880ac9A755fd29B2688956BD959F933F',
-        'BNB': '0x0000000000000000000000000000000000000000',
-    },
-    137: {
-        'USDC': '0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174',
-        'USDT': '0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
-        'DAI': '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
-        'WETH': '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619',
-        'MATIC': '0x0000000000000000000000000000000000001010',
-    },
-}
-
 # Remote token map fetched from Relay
 _REMOTE_MAP: Dict[int, Dict[str, str]] = {}
 _CACHE_TIMESTAMP: float = 0.0
@@ -78,24 +42,37 @@ def load_token_map() -> None:
     """Load token mapping from Relay into the in-memory cache."""
     global _REMOTE_MAP, _CACHE_TIMESTAMP, CHAIN_IDS
     mapping: Dict[int, Dict[str, str]] = {}
+    
     try:
+        # Fetch chains from Relay API
         resp = requests.get(f"{RELAY_BASE_URL}/chains", timeout=10)
         if resp.ok:
             data = resp.json()
             chains = data.get("chains") or data.get("result") or []
+            
             for chain in chains:
                 cid = chain.get("id") or chain.get("chainId")
                 if cid is None:
                     continue
-                CHAIN_IDS[cid] = chain.get("name")
+                    
+                CHAIN_IDS[cid] = chain.get("name") or chain.get("displayName")
+                symbol_map: Dict[str, str] = {}
+                
+                # Add native token (like ETH, MATIC, etc.)
+                native_currency = chain.get("currency")
+                if native_currency:
+                    symbol_map[native_currency.upper()] = "0x0000000000000000000000000000000000000000"
+                
+                # Add ERC20 tokens
                 tokens = (
                     chain.get("erc20Currencies")
                     or chain.get("featuredTokens")
                     or []
                 )
+                
                 if isinstance(tokens, dict):
                     tokens = list(tokens.values())
-                symbol_map: Dict[str, str] = {}
+                    
                 for t in tokens:
                     if not isinstance(t, dict):
                         continue
@@ -103,53 +80,67 @@ def load_token_map() -> None:
                     addr = t.get("address")
                     if sym and addr:
                         symbol_map[sym.upper()] = addr
+                
                 if symbol_map:
                     mapping[cid] = symbol_map
+                    logger.info(f"Loaded {len(symbol_map)} tokens for chain {cid} ({CHAIN_IDS[cid]})")
+                    
     except Exception as exc:
         logger.exception("Error loading token map via /chains: %s", exc)
-
-    if not mapping:
-        # Fallback to per-chain endpoint using known chain IDs
-        for cid in TOKEN_MAP.keys():
+        # If chains endpoint fails, try individual chain endpoints
+        known_chains = [1, 137, 56, 42161, 10, 11155111]  # Common chains
+        for cid in known_chains:
             tokens = _fetch_tokens_for_chain(cid)
             if tokens:
                 mapping[cid] = tokens
+                logger.info(f"Loaded {len(tokens)} tokens for chain {cid} via individual endpoint")
 
     if mapping:
         _REMOTE_MAP = mapping
         _CACHE_TIMESTAMP = time.time()
+        logger.info(f"Token map loaded with {len(mapping)} chains")
+    else:
+        logger.warning("Failed to load any token mappings from Relay API")
 
 
 def resolve_token_address(chain_id: int, token: str) -> str:
     """Return the address for a token symbol if available."""
+    # If it's already an address, return as is
     if token.lower().startswith("0x") and len(token) == 42:
         return token
 
+    # Refresh cache if needed
     now = time.time()
     if now - _CACHE_TIMESTAMP > _CACHE_TTL or chain_id not in _REMOTE_MAP:
         load_token_map()
 
     symbol = token.upper()
     addr = _REMOTE_MAP.get(chain_id, {}).get(symbol)
+    
     if addr:
+        logger.debug(f"Resolved {token} to {addr} on chain {chain_id}")
         return addr
+    
+    # If not found, return the original token (let Relay handle it)
+    logger.warning(f"Token {token} not found in mapping for chain {chain_id}")
+    return token
 
-    mapping = TOKEN_MAP.get(chain_id, {})
-    return mapping.get(symbol, token)
 
-def resolve_key(dict_in:dict, value:str)-> str:
-    for key,val in dict_in.items():
+def resolve_key(dict_in: dict, value: str) -> str:
+    """Find the key for a given value in a dictionary."""
+    for key, val in dict_in.items():
         if val == value:
             return key
+    return value  # Return the original value if not found
 
 
-def resolve_token_symbol(chain_id:int, token_addr:str):
+def resolve_token_symbol(chain_id: int, token_addr: str) -> str:
+    """Return the symbol for a token address if available."""
+    # Refresh cache if needed
     now = time.time()
     if now - _CACHE_TIMESTAMP > _CACHE_TTL or chain_id not in _REMOTE_MAP:
         load_token_map()
+        
     tokens_in_chain = _REMOTE_MAP.get(chain_id, {})
-    if not tokens_in_chain:
-        mapping = TOKEN_MAP.get(chain_id, {})        
-        return resolve_key(mapping, value=token_addr)
-    symbol = resolve_key(tokens_in_chain, value=token_addr)
+    symbol = resolve_key(tokens_in_chain, token_addr)
     return symbol
