@@ -121,25 +121,69 @@ const SwapInterface: React.FC = () => {
   useEffect(() => {
     const loadChains = async () => {
       setIsLoadingChains(true)
+      setError('')
+      
+      // First check if backend is accessible
       try {
-        console.log('Loading chains from:', `${API_BASE_URL}/chains`)
-        const response = await fetch(`${API_BASE_URL}/chains`)
-        console.log('Chains response status:', response.status)
-        const data = await response.json()
-        console.log('Chains data:', data)
-        if (data.chains && Array.isArray(data.chains)) {
-          // Ensure all chains have valid id and name properties
-          const validChains = data.chains.filter((chain: any) => 
-            chain && typeof chain.id !== 'undefined' && chain.name
-          )
-          setChains(validChains)
-        }
+        console.log('Checking backend health...')
+        const healthResponse = await fetch(`${API_BASE_URL}/`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        console.log('Health check status:', healthResponse.status)
       } catch (err) {
-        console.error('Failed to load chains:', err)
-        setError('Failed to load supported chains: ' + (err instanceof Error ? err.message : 'Network error'))
-      } finally {
-        setIsLoadingChains(false)
+        console.warn('Health check failed:', err)
       }
+      
+      const retryLoad = async (attempts = 3) => {
+        for (let attempt = 1; attempt <= attempts; attempt++) {
+          try {
+            console.log(`Loading chains from: ${API_BASE_URL}/chains (attempt ${attempt}/${attempts})`)
+            const response = await fetch(`${API_BASE_URL}/chains`, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            })
+            console.log('Chains response status:', response.status)
+            
+            if (!response.ok) {
+              throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+            }
+            
+            const data = await response.json()
+            console.log('Chains data:', data)
+            
+            if (data.chains && Array.isArray(data.chains)) {
+              // Ensure all chains have valid id and name properties
+              const validChains = data.chains.filter((chain: any) => 
+                chain && (chain.id !== undefined || chain.chainId !== undefined) && (chain.name || chain.displayName)
+              ).map((chain: any) => ({
+                id: chain.id || chain.chainId,
+                name: chain.name || chain.displayName || `Chain ${chain.id || chain.chainId}`
+              }))
+              setChains(validChains)
+              console.log(`Successfully loaded ${validChains.length} chains`)
+              return // Success, exit retry loop
+            } else {
+              throw new Error('Invalid chains data structure')
+            }
+          } catch (err) {
+            console.error(`Failed to load chains (attempt ${attempt}/${attempts}):`, err)
+            if (attempt === attempts) {
+              setError('Failed to load supported chains: ' + (err instanceof Error ? err.message : 'Network error'))
+            } else {
+              // Wait before retrying
+              await new Promise(resolve => setTimeout(resolve, 1000 * attempt))
+            }
+          }
+        }
+      }
+      
+      await retryLoad()
+      setIsLoadingChains(false)
     }
     loadChains()
   }, [API_BASE_URL])
@@ -351,6 +395,12 @@ const SwapInterface: React.FC = () => {
       {!isConnected && (
         <div className="wallet-notice">
           <p>Please connect your wallet to start swapping</p>
+        </div>
+      )}
+
+      {isLoadingChains && (
+        <div className="loading-notice">
+          <p>🔄 Loading supported chains and tokens...</p>
         </div>
       )}
 

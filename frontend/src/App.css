@@ -689,6 +689,23 @@ pre {
   font-size: 0.875rem;
 }
 
+/* Loading Notice */
+.loading-notice {
+  background: var(--gradient-accent);
+  border: 1px solid var(--neon-blue);
+  border-radius: var(--radius);
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.loading-notice p {
+  color: white;
+  font-weight: 600;
+  margin: 0;
+  font-size: 0.875rem;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .header-content {
