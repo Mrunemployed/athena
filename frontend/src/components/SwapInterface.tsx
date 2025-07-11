@@ -69,6 +69,9 @@ const SwapInterface: React.FC = () => {
   const getConnectedAddresses = (): WalletAddress[] => {
     const addresses: WalletAddress[] = []
     
+    console.log('getConnectedAddresses - evmAccount:', evmAccount)
+    console.log('getConnectedAddresses - solanaAccount:', solanaAccount)
+    
     // Add EVM addresses
     if (evmAccount.address) {
       addresses.push({
@@ -83,12 +86,13 @@ const SwapInterface: React.FC = () => {
     if (solanaAccount.address) {
       addresses.push({
         address: solanaAccount.address,
-        chainId: 1399811150, // Solana chain ID
+        chainId: 792703809, // Solana chain ID from Relay API
         namespace: 'solana',
         chainName: 'Solana'
       })
     }
     
+    console.log('getConnectedAddresses - returning addresses:', addresses)
     return addresses
   }
 
