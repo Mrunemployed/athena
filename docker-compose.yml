@@ -1,0 +1,48 @@
+version: '3.9'
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "9013:8000"
+    environment:
+      - MONGO_URL=${MONGO_URL:-mongodb://mongo:27017}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379/0}
+      - RELAY_BASE_URL=${RELAY_BASE_URL:-https://api.relay.link}
+      - LOG_LEVEL=${LOG_LEVEL:-DEBUG}
+    depends_on:
+      - mongo
+      - redis 
+  frontend:
+    build:
+      context: .
+      dockerfile: new-frontend/Dockerfile
+      args:
+        NEXT_PUBLIC_PROJECT_ID: ${NEXT_PUBLIC_PROJECT_ID}
+        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://backend:8000}
+    environment:
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://backend:8000}
+      - NEXT_PUBLIC_PROJECT_ID=${NEXT_PUBLIC_PROJECT_ID}
+      - NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+    ports:
+      - "9012:3000"
+    depends_on:
+      - backend
+  mongo:
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+  redis:
+    image: redis:latest
+    restart: always
+
+volumes:
+  mongo_data:
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.40.0.0/16

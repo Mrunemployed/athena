@@ -1,0 +1,19 @@
+# Ignore git metadata
+.git
+
+# Node modules
+node_modules
+new-frontend/node_modules
+frontend/node_modules
+
+# Build output
+new-frontend/.next
+frontend/.next
+
+# Python caches
+**/__pycache__
+
+# Tests and docs
+tests
+*.md
+

@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+apscheduler
+pymongo
+redis
+requests
+python-dotenv
+base58
