@@ -71,6 +71,8 @@ const SwapInterface: React.FC = () => {
     
     console.log('getConnectedAddresses - evmAccount:', evmAccount)
     console.log('getConnectedAddresses - solanaAccount:', solanaAccount)
+    console.log('getConnectedAddresses - general address:', address)
+    console.log('getConnectedAddresses - isConnected:', isConnected)
     
     // Add EVM addresses
     if (evmAccount.address) {
@@ -82,10 +84,36 @@ const SwapInterface: React.FC = () => {
       })
     }
     
-    // Add Solana address
+    // Add Solana address - try multiple approaches
+    let solanaAddr = null
+    
+    // Try from solanaAccount hook
     if (solanaAccount.address) {
+      solanaAddr = solanaAccount.address
+      console.log('Found Solana address from solanaAccount:', solanaAddr)
+    }
+    
+    // Try from general address if it looks like Solana
+    if (!solanaAddr && address && address.length > 40) {
+      solanaAddr = address
+      console.log('Found Solana address from general address:', solanaAddr)
+    }
+    
+    // If we found a Solana address, add it
+    if (solanaAddr) {
       addresses.push({
-        address: solanaAccount.address,
+        address: solanaAddr,
+        chainId: 792703809, // Solana chain ID from Relay API
+        namespace: 'solana',
+        chainName: 'Solana'
+      })
+    }
+    
+    // Temporary fallback: if no Solana address found but we're connected, add the known address
+    if (!solanaAddr && isConnected && address && address.length > 40) {
+      console.log('Adding fallback Solana address:', address)
+      addresses.push({
+        address: address,
         chainId: 792703809, // Solana chain ID from Relay API
         namespace: 'solana',
         chainName: 'Solana'
