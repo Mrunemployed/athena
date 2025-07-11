@@ -53,21 +53,24 @@ const SwapInterface: React.FC = () => {
   const [isLoadingTokens, setIsLoadingTokens] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   
-  const API_BASE_URL = import.meta.env.VITE_API_URL || import.meta.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://medusaapi.tinyaibots.com'
 
   // Load supported chains
   useEffect(() => {
     const loadChains = async () => {
       setIsLoadingChains(true)
       try {
+        console.log('Loading chains from:', `${API_BASE_URL}/chains`)
         const response = await fetch(`${API_BASE_URL}/chains`)
+        console.log('Chains response status:', response.status)
         const data = await response.json()
+        console.log('Chains data:', data)
         if (data.chains) {
           setChains(data.chains)
         }
       } catch (err) {
         console.error('Failed to load chains:', err)
-        setError('Failed to load supported chains')
+        setError('Failed to load supported chains: ' + (err instanceof Error ? err.message : 'Network error'))
       } finally {
         setIsLoadingChains(false)
       }
@@ -81,14 +84,17 @@ const SwapInterface: React.FC = () => {
       if (!sourceChain) return
       setIsLoadingTokens(true)
       try {
+        console.log('Loading source tokens from:', `${API_BASE_URL}/tokens/${sourceChain}`)
         const response = await fetch(`${API_BASE_URL}/tokens/${sourceChain}`)
+        console.log('Source tokens response status:', response.status)
         const data = await response.json()
+        console.log('Source tokens data:', data)
         if (data.tokens) {
           setSourceTokens(data.tokens)
         }
       } catch (err) {
         console.error('Failed to load source tokens:', err)
-        setError('Failed to load tokens for source chain')
+        setError('Failed to load tokens for source chain: ' + (err instanceof Error ? err.message : 'Network error'))
       } finally {
         setIsLoadingTokens(false)
       }
@@ -102,14 +108,17 @@ const SwapInterface: React.FC = () => {
       if (!destinationChain) return
       setIsLoadingTokens(true)
       try {
+        console.log('Loading destination tokens from:', `${API_BASE_URL}/tokens/${destinationChain}`)
         const response = await fetch(`${API_BASE_URL}/tokens/${destinationChain}`)
+        console.log('Destination tokens response status:', response.status)
         const data = await response.json()
+        console.log('Destination tokens data:', data)
         if (data.tokens) {
           setDestinationTokens(data.tokens)
         }
       } catch (err) {
         console.error('Failed to load destination tokens:', err)
-        setError('Failed to load tokens for destination chain')
+        setError('Failed to load tokens for destination chain: ' + (err instanceof Error ? err.message : 'Network error'))
       } finally {
         setIsLoadingTokens(false)
       }

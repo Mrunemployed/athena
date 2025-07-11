@@ -17,12 +17,14 @@ services:
       dockerfile: frontend/Dockerfile
       args:
         VITE_PROJECT_ID: ${VITE_PROJECT_ID}
+        VITE_API_URL: ${NEXT_PUBLIC_API_URL}
         NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:9012}
         NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:9013}
     environment:
-      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:9013}
+      - VITE_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:9013}
       - VITE_PROJECT_ID=${VITE_PROJECT_ID}
       - NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL:-http://localhost:9012}
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:9013}
     ports:
       - "9012:3000"
     depends_on:
