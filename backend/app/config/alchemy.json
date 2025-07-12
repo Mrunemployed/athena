@@ -1,0 +1,497 @@
+{
+    "1": {
+        "chainId": 1,
+        "name": "Ethereum Mainnet",
+        "url": "https://eth-mainnet.g.alchemy.com/v2/"
+    },
+    "11155111": {
+        "chainId": 11155111,
+        "name": "Ethereum Sepolia",
+        "url": "https://eth-sepolia.g.alchemy.com/v2/"
+    },
+    "17000": {
+        "chainId": 17000,
+        "name": "Ethereum Hole\u00c5\u00a1ky",
+        "url": "https://eth-holesky.g.alchemy.com/v2/"
+    },
+    "560048": {
+        "chainId": 560048,
+        "name": "Ethereum Hoodi",
+        "url": "https://eth-hoodi.g.alchemy.com/v2/"
+    },
+    "42161": {
+        "chainId": 42161,
+        "name": "Arbitrum Mainnet",
+        "url": "https://arb-mainnet.g.alchemy.com/v2/"
+    },
+    "421614": {
+        "chainId": 421614,
+        "name": "Arbitrum Sepolia",
+        "url": "https://arb-sepolia.g.alchemy.com/v2/"
+    },
+    "747": {
+        "chainId": 747,
+        "name": "Flow EVM Mainnet",
+        "url": "https://flow-mainnet.g.alchemy.com/v2/"
+    },
+    "545": {
+        "chainId": 545,
+        "name": "Flow EVM Testnet",
+        "url": "https://flow-testnet.g.alchemy.com/v2/"
+    },
+    "137": {
+        "chainId": 137,
+        "name": "Polygon Mainnet",
+        "url": "https://polygon-mainnet.g.alchemy.com/v2/"
+    },
+    "80002": {
+        "chainId": 80002,
+        "name": "Polygon Amoy",
+        "url": "https://polygon-amoy.g.alchemy.com/v2/"
+    },
+    "10": {
+        "chainId": 10,
+        "name": "OP Mainnet Mainnet",
+        "url": "https://opt-mainnet.g.alchemy.com/v2/"
+    },
+    "11155420": {
+        "chainId": 11155420,
+        "name": "OP Mainnet Sepolia",
+        "url": "https://opt-sepolia.g.alchemy.com/v2/"
+    },
+    "null": {
+        "chainId": null,
+        "name": "Aptos Testnet",
+        "url": "https://aptos-testnet.g.alchemy.com/v2/"
+    },
+    "592": {
+        "chainId": 592,
+        "name": "Astar Mainnet",
+        "url": "https://astar-mainnet.g.alchemy.com/v2/"
+    },
+    "1101": {
+        "chainId": 1101,
+        "name": "Polygon zkEVM Mainnet",
+        "url": "https://polygonzkevm-mainnet.g.alchemy.com/v2/"
+    },
+    "2442": {
+        "chainId": 2442,
+        "name": "Polygon zkEVM Cardona",
+        "url": "https://polygonzkevm-cardona.g.alchemy.com/v2/"
+    },
+    "8453": {
+        "chainId": 8453,
+        "name": "Base Mainnet",
+        "url": "https://base-mainnet.g.alchemy.com/v2/"
+    },
+    "84532": {
+        "chainId": 84532,
+        "name": "Base Sepolia",
+        "url": "https://base-sepolia.g.alchemy.com/v2/"
+    },
+    "324": {
+        "chainId": 324,
+        "name": "ZKsync Mainnet",
+        "url": "https://zksync-mainnet.g.alchemy.com/v2/"
+    },
+    "300": {
+        "chainId": 300,
+        "name": "ZKsync Sepolia",
+        "url": "https://zksync-sepolia.g.alchemy.com/v2/"
+    },
+    "7777777": {
+        "chainId": 7777777,
+        "name": "Zora Mainnet",
+        "url": "https://zora-mainnet.g.alchemy.com/v2/"
+    },
+    "999999999": {
+        "chainId": 999999999,
+        "name": "Zora Sepolia",
+        "url": "https://zora-sepolia.g.alchemy.com/v2/"
+    },
+    "252": {
+        "chainId": 252,
+        "name": "Frax Mainnet",
+        "url": "https://frax-mainnet.g.alchemy.com/v2/"
+    },
+    "2523": {
+        "chainId": 2523,
+        "name": "Frax Sepolia",
+        "url": "https://frax-sepolia.g.alchemy.com/v2/"
+    },
+    "56": {
+        "chainId": 56,
+        "name": "BNB Smart Chain Mainnet",
+        "url": "https://bnb-mainnet.g.alchemy.com/v2/"
+    },
+    "97": {
+        "chainId": 97,
+        "name": "BNB Smart Chain Testnet",
+        "url": "https://bnb-testnet.g.alchemy.com/v2/"
+    },
+    "43114": {
+        "chainId": 43114,
+        "name": "Avalanche Mainnet",
+        "url": "https://avax-mainnet.g.alchemy.com/v2/"
+    },
+    "43113": {
+        "chainId": 43113,
+        "name": "Avalanche Fuji",
+        "url": "https://avax-fuji.g.alchemy.com/v2/"
+    },
+    "42170": {
+        "chainId": 42170,
+        "name": "Arbitrum Nova Mainnet",
+        "url": "https://arbnova-mainnet.g.alchemy.com/v2/"
+    },
+    "480": {
+        "chainId": 480,
+        "name": "World Chain Mainnet",
+        "url": "https://worldchain-mainnet.g.alchemy.com/v2/"
+    },
+    "4801": {
+        "chainId": 4801,
+        "name": "World Chain Sepolia",
+        "url": "https://worldchain-sepolia.g.alchemy.com/v2/"
+    },
+    "7000": {
+        "chainId": 7000,
+        "name": "ZetaChain Mainnet",
+        "url": "https://zetachain-mainnet.g.alchemy.com/v2/"
+    },
+    "7001": {
+        "chainId": 7001,
+        "name": "ZetaChain Testnet",
+        "url": "https://zetachain-testnet.g.alchemy.com/v2/"
+    },
+    "81457": {
+        "chainId": 81457,
+        "name": "Blast Mainnet",
+        "url": "https://blast-mainnet.g.alchemy.com/v2/"
+    },
+    "168587773": {
+        "chainId": 168587773,
+        "name": "Blast Sepolia",
+        "url": "https://blast-sepolia.g.alchemy.com/v2/"
+    },
+    "534352": {
+        "chainId": 534352,
+        "name": "Scroll Mainnet",
+        "url": "https://scroll-mainnet.g.alchemy.com/v2/"
+    },
+    "534351": {
+        "chainId": 534351,
+        "name": "Scroll Sepolia",
+        "url": "https://scroll-sepolia.g.alchemy.com/v2/"
+    },
+    "59144": {
+        "chainId": 59144,
+        "name": "Linea Mainnet",
+        "url": "https://linea-mainnet.g.alchemy.com/v2/"
+    },
+    "59141": {
+        "chainId": 59141,
+        "name": "Linea Sepolia",
+        "url": "https://linea-sepolia.g.alchemy.com/v2/"
+    },
+    "100": {
+        "chainId": 100,
+        "name": "Gnosis Mainnet",
+        "url": "https://gnosis-mainnet.g.alchemy.com/v2/"
+    },
+    "10200": {
+        "chainId": 10200,
+        "name": "Gnosis Chiado",
+        "url": "https://gnosis-chiado.g.alchemy.com/v2/"
+    },
+    "250": {
+        "chainId": 250,
+        "name": "Fantom Mainnet",
+        "url": "https://fantom-mainnet.g.alchemy.com/v2/"
+    },
+    "5000": {
+        "chainId": 5000,
+        "name": "Mantle Mainnet",
+        "url": "https://mantle-mainnet.g.alchemy.com/v2/"
+    },
+    "5003": {
+        "chainId": 5003,
+        "name": "Mantle Sepolia",
+        "url": "https://mantle-sepolia.g.alchemy.com/v2/"
+    },
+    "42220": {
+        "chainId": 42220,
+        "name": "Celo Mainnet",
+        "url": "https://celo-mainnet.g.alchemy.com/v2/"
+    },
+    "44787": {
+        "chainId": 44787,
+        "name": "Celo Alfajores",
+        "url": "https://celo-alfajores.g.alchemy.com/v2/"
+    },
+    "80094": {
+        "chainId": 80094,
+        "name": "Berachain Mainnet",
+        "url": "https://berachain-mainnet.g.alchemy.com/v2/"
+    },
+    "80069": {
+        "chainId": 80069,
+        "name": "Berachain Bepolia",
+        "url": "https://berachain-bepolia.g.alchemy.com/v2/"
+    },
+    "1088": {
+        "chainId": 1088,
+        "name": "Metis Mainnet",
+        "url": "https://metis-mainnet.g.alchemy.com/v2/"
+    },
+    "204": {
+        "chainId": 204,
+        "name": "opBNB Mainnet",
+        "url": "https://opbnb-mainnet.g.alchemy.com/v2/"
+    },
+    "5611": {
+        "chainId": 5611,
+        "name": "opBNB Testnet",
+        "url": "https://opbnb-testnet.g.alchemy.com/v2/"
+    },
+    "8008": {
+        "chainId": 8008,
+        "name": "Polynomial Mainnet",
+        "url": "https://polynomial-mainnet.g.alchemy.com/v2/"
+    },
+    "80008": {
+        "chainId": 80008,
+        "name": "Polynomial Sepolia",
+        "url": "https://polynomial-sepolia.g.alchemy.com/v2/"
+    },
+    "360": {
+        "chainId": 360,
+        "name": "Shape Mainnet",
+        "url": "https://shape-mainnet.g.alchemy.com/v2/"
+    },
+    "11011": {
+        "chainId": 11011,
+        "name": "Shape Sepolia",
+        "url": "https://shape-sepolia.g.alchemy.com/v2/"
+    },
+    "4157": {
+        "chainId": 4157,
+        "name": "CrossFi Testnet",
+        "url": "https://crossfi-testnet.g.alchemy.com/v2/"
+    },
+    "4158": {
+        "chainId": 4158,
+        "name": "CrossFi Mainnet",
+        "url": "https://crossfi-mainnet.g.alchemy.com/v2/"
+    },
+    "1329": {
+        "chainId": 1329,
+        "name": "Sei Mainnet",
+        "url": "https://sei-mainnet.g.alchemy.com/v2/"
+    },
+    "1328": {
+        "chainId": 1328,
+        "name": "Sei Testnet",
+        "url": "https://sei-testnet.g.alchemy.com/v2/"
+    },
+    "69000": {
+        "chainId": 69000,
+        "name": "Anime Mainnet",
+        "url": "https://anime-mainnet.g.alchemy.com/v2/"
+    },
+    "6900": {
+        "chainId": 6900,
+        "name": "Anime Sepolia",
+        "url": "https://anime-sepolia.g.alchemy.com/v2/"
+    },
+    "33139": {
+        "chainId": 33139,
+        "name": "ApeChain Mainnet",
+        "url": "https://apechain-mainnet.g.alchemy.com/v2/"
+    },
+    "33111": {
+        "chainId": 33111,
+        "name": "ApeChain Curtis",
+        "url": "https://apechain-curtis.g.alchemy.com/v2/"
+    },
+    "232": {
+        "chainId": 232,
+        "name": "Lens Mainnet",
+        "url": "https://lens-mainnet.g.alchemy.com/v2/"
+    },
+    "37111": {
+        "chainId": 37111,
+        "name": "Lens Sepolia",
+        "url": "https://lens-sepolia.g.alchemy.com/v2/"
+    },
+    "1868": {
+        "chainId": 1868,
+        "name": "Soneium Mainnet",
+        "url": "https://soneium-mainnet.g.alchemy.com/v2/"
+    },
+    "1946": {
+        "chainId": 1946,
+        "name": "Soneium Minato",
+        "url": "https://soneium-minato.g.alchemy.com/v2/"
+    },
+    "30": {
+        "chainId": 30,
+        "name": "Rootstock Mainnet",
+        "url": "https://rootstock-mainnet.g.alchemy.com/v2/"
+    },
+    "31": {
+        "chainId": 31,
+        "name": "Rootstock Testnet",
+        "url": "https://rootstock-testnet.g.alchemy.com/v2/"
+    },
+    "994873017": {
+        "chainId": 994873017,
+        "name": "Lumia Prism",
+        "url": "https://lumia-prism.g.alchemy.com/v2/"
+    },
+    "1952959480": {
+        "chainId": 1952959480,
+        "name": "Lumia Testnet",
+        "url": "https://lumia-testnet.g.alchemy.com/v2/"
+    },
+    "130": {
+        "chainId": 130,
+        "name": "Unichain Mainnet",
+        "url": "https://unichain-mainnet.g.alchemy.com/v2/"
+    },
+    "1301": {
+        "chainId": 1301,
+        "name": "Unichain Sepolia",
+        "url": "https://unichain-sepolia.g.alchemy.com/v2/"
+    },
+    "146": {
+        "chainId": 146,
+        "name": "Sonic Mainnet",
+        "url": "https://sonic-mainnet.g.alchemy.com/v2/"
+    },
+    "57054": {
+        "chainId": 57054,
+        "name": "Sonic Blaze",
+        "url": "https://sonic-blaze.g.alchemy.com/v2/"
+    },
+    "241320161": {
+        "chainId": 241320161,
+        "name": "XMTP Sepolia",
+        "url": "https://xmtp-testnet.g.alchemy.com/v2/"
+    },
+    "2741": {
+        "chainId": 2741,
+        "name": "Abstract Mainnet",
+        "url": "https://abstract-mainnet.g.alchemy.com/v2/"
+    },
+    "11124": {
+        "chainId": 11124,
+        "name": "Abstract Testnet",
+        "url": "https://abstract-testnet.g.alchemy.com/v2/"
+    },
+    "10143": {
+        "chainId": 10143,
+        "name": "Monad Testnet",
+        "url": "https://monad-testnet.g.alchemy.com/v2/"
+    },
+    "5330": {
+        "chainId": 5330,
+        "name": "Superseed Mainnet",
+        "url": "https://superseed-mainnet.g.alchemy.com/v2/"
+    },
+    "53302": {
+        "chainId": 53302,
+        "name": "Superseed Sepolia",
+        "url": "https://superseed-sepolia.g.alchemy.com/v2/"
+    },
+    "666666666": {
+        "chainId": 666666666,
+        "name": "Degen Mainnet",
+        "url": "https://degen-mainnet.g.alchemy.com/v2/"
+    },
+    "5371": {
+        "chainId": 5371,
+        "name": "Settlus Mainnet",
+        "url": "https://settlus-mainnet.g.alchemy.com/v2/"
+    },
+    "5373": {
+        "chainId": 5373,
+        "name": "Settlus Sepolia",
+        "url": "https://settlus-septestnet.g.alchemy.com/v2/"
+    },
+    "57073": {
+        "chainId": 57073,
+        "name": "Ink Mainnet",
+        "url": "https://ink-mainnet.g.alchemy.com/v2/"
+    },
+    "763373": {
+        "chainId": 763373,
+        "name": "Ink Sepolia",
+        "url": "https://ink-sepolia.g.alchemy.com/v2/"
+    },
+    "2020": {
+        "chainId": 2020,
+        "name": "Ronin Mainnet",
+        "url": "https://ronin-mainnet.g.alchemy.com/v2/"
+    },
+    "2021": {
+        "chainId": 2021,
+        "name": "Ronin Saigon",
+        "url": "https://ronin-saigon.g.alchemy.com/v2/"
+    },
+    "6985385": {
+        "chainId": 6985385,
+        "name": "Humanity Mainnet",
+        "url": "https://humanity-mainnet.g.alchemy.com/v2/"
+    },
+    "7080969": {
+        "chainId": 7080969,
+        "name": "Humanity Testnet",
+        "url": "https://humanity-testnet.g.alchemy.com/v2/"
+    },
+    "10218": {
+        "chainId": 10218,
+        "name": "Tea Sepolia",
+        "url": "https://tea-sepolia.g.alchemy.com/v2/"
+    },
+    "685685": {
+        "chainId": 685685,
+        "name": "Gensyn Testnet",
+        "url": "https://gensyn-testnet.g.alchemy.com/v2/"
+    },
+    "11155931": {
+        "chainId": 11155931,
+        "name": "Rise Testnet",
+        "url": "https://rise-testnet.g.alchemy.com/v2/"
+    },
+    "1514": {
+        "chainId": 1514,
+        "name": "Story Mainnet",
+        "url": "https://story-mainnet.g.alchemy.com/v2/"
+    },
+    "1315": {
+        "chainId": 1315,
+        "name": "Story Aeneid",
+        "url": "https://story-aeneid.g.alchemy.com/v2/"
+    },
+    "613419": {
+        "chainId": 613419,
+        "name": "Galactica Mainnet",
+        "url": "https://galactica-mainnet.g.alchemy.com/v2/"
+    },
+    "843843": {
+        "chainId": 843843,
+        "name": "Galactica Cassiopeia",
+        "url": "https://galactica-cassiopeia.g.alchemy.com/v2/"
+    },
+    "3637": {
+        "chainId": 3637,
+        "name": "Botanix Mainnet",
+        "url": "https://botanix-mainnet.g.alchemy.com/v2/"
+    },
+    "3636": {
+        "chainId": 3636,
+        "name": "Botanix Testnet",
+        "url": "https://botanix-testnet.g.alchemy.com/v2/"
+    }
+}
