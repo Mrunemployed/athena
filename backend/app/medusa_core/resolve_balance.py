@@ -59,16 +59,18 @@ class relay(ConnectorInterface):
             base_url= os.getenv("RELAY_BASE_URL",None),
             endpoints=available_endpoints
         )
+        print("▶️  RELAY_BASE_URL =", os.getenv("RELAY_BASE_URL"))
         return config
 
     async def _load_supported_chains(self) -> dict:
         try:
-                
             chains_url = self.interface.base_url+self.interface.endpoints.supported_chains
+            print("▶️  Fetching chains from", chains_url)
             async with ClientSession() as session:
                 async with session.get(url=chains_url) as request:
                     response = await request.json()
                     return response
+                print("▶️  chains payload:", response)
                 
         except Exception as err:
             return
@@ -218,6 +220,7 @@ class WalletBalance:
             # print(req_url)
             if not req_url:
                 return
+            print("▶️  POST-ing to", req_url, "payload:", self.build_payload(wallet_addr))
             async with ClientSession() as session:
                 for _ in range(retries):
                     async with session.post(url=req_url,json=self.build_payload(wallet_addr)) as request:
@@ -226,6 +229,8 @@ class WalletBalance:
                         elif request.status > 200:
                             continue
                         response = await request.json()
+                        print("▶️  got status", request.status, "json:", await request.json())
+
                         if request.status<=200 and response.get("result"):
                             available_balances = await self._convert_to_currency(response.get("result"))
                             return available_balances
