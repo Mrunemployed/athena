@@ -202,7 +202,9 @@ def create_swap(req: SwapRequest):
 @app.get("/balances{walletAddress}")
 async def fetch_balances(walletAddress:str):
     wb = WalletBalance()
-    return await wb.resolve_balances(walletAddress)
+    result = await wb.resolve_balances(walletAddress)
+    print(result)
+    return result
 
 @app.get("/swap/{swap_id}")
 def get_swap(swap_id: str):

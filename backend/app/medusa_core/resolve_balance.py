@@ -253,7 +253,6 @@ class WalletBalance:
         balances = await self.run_in_pool(wallet_addr)
         refined = []
         for balance in balances:
-            print(balance)
             if balance:
                 refined.extend(balance)
         return refined
