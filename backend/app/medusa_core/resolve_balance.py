@@ -259,5 +259,6 @@ class WalletBalance:
         return refined
 
 if __name__ == '__main__':
-    balanceResolver = WalletBalance()
-    print(balanceResolver.resolve_balances("0xD3D8d8FD0a225a48343DFB945eE8eBa50fc47afA"))
+    # balanceResolver = WalletBalance()
+    pass
+    # print(asyncio.run(balanceResolver.resolve_balances("0xD3D8d8FD0a225a48343DFB945eE8eBa50fc47afA")))
