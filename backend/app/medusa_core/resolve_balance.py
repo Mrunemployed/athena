@@ -131,7 +131,6 @@ class Providers:
             await connector.setup()
 
 providers = Providers()
-providers.load_providers()
 
 class WalletBalance:
     def __init__(
@@ -250,6 +249,7 @@ class WalletBalance:
         self,
         wallet_addr:str
     ):
+        await providers.load_providers()
         self._supported_providers = await providers.get_provider()
         balances = await self.run_in_pool(wallet_addr)
         refined = []
