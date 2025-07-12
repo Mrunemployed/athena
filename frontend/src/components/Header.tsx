@@ -1,11 +1,12 @@
-import { useAppKit, useAppKitNetwork, useDisconnect } from '@reown/appkit/react'
+import { useAppKit, useAppKitNetwork, useAppKitState, useDisconnect } from '@reown/appkit/react'
 import { networks } from '../config'
 import { useWallet } from '../hooks/useWallet'
 import './Header.css'
 
 export function Header() {
   const { open } = useAppKit()
-  const { switchNetwork, activeChain } = useAppKitNetwork()
+  const { switchNetwork } = useAppKitNetwork()
+  const { activeChain } = useAppKitState()
   const { disconnect } = useDisconnect()
   const { isConnected, address, namespace } = useWallet()
 
