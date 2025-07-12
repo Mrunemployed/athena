@@ -201,7 +201,8 @@ def create_swap(req: SwapRequest):
 
 @app.get("/balances/{walletAddress}")
 async def fetch_balances(walletAddress:str):
-    result = asyncio.run(BalanceProvider.resolve_balances(walletAddress))
+    loop = asyncio.get_event_loop()
+    result = asyncio.run_coroutine_threadsafe(BalanceProvider.resolve_balances(walletAddress),loop)
     print(result)
     return result
 
