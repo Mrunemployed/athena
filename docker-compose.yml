@@ -7,7 +7,7 @@ services:
       - MONGO_URL=${MONGO_URL:-mongodb://mongo:27017}
       - REDIS_URL=${REDIS_URL:-redis://redis:6379/0}
       - RELAY_BASE_URL=${RELAY_BASE_URL:-https://api.relay.link}
-      - ALCHEMY_API_KEY=${ALCHEMY_API_KEY}:-ECNFancOj9oOMYrqcfg58m5wS0qFWXdh
+      - ALCHEMY_API_KEY=${ALCHEMY_API_KEY:-ECNFancOj9oOMYrqcfg58m5wS0qFWXdh}
       - LOG_LEVEL=${LOG_LEVEL:-DEBUG}
     depends_on:
       - mongo
