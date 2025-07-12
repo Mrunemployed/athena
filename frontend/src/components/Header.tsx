@@ -1,5 +1,5 @@
 
-import { useAppKit, useAppKitNetwork, useAppKitState, useDisconnect } from '@reown/appkit/react'
+import { useAppKit, useAppKitState, useDisconnect } from '@reown/appkit/react'
 
 import { networks } from '../config'
 import { useWallet } from '../hooks/useWallet'
@@ -7,8 +7,8 @@ import './Header.css'
 
 export function Header() {
   const { open } = useAppKit()
-  const { switchNetwork } = useAppKitNetwork()
-  const { activeChain } = useAppKitState()
+
+  const { selectedNetworkId } = useAppKitState()
 
   const { disconnect } = useDisconnect()
   const { isConnected, address, namespace } = useWallet()
@@ -25,8 +25,10 @@ export function Header() {
     }
   }
 
-  const handleNetworkSwitch = (network: any) => {
-    switchNetwork(network)
+  const handleNetworkSwitch = () => {
+    // For now, we'll use the open method to switch networks
+    // This will open the network selection modal
+    open({ view: 'Networks' })
   }
 
   const getNetworkName = (chainId: string) => {
@@ -52,11 +54,11 @@ export function Header() {
             <label htmlFor="network-select">Network:</label>
             <select
               id="network-select"
-              value={activeChain?.id || ''}
+              value={selectedNetworkId || ''}
               onChange={(e) => {
                 const selectedNetwork = networks.find(n => n.id === e.target.value)
                 if (selectedNetwork) {
-                  handleNetworkSwitch(selectedNetwork)
+                  handleNetworkSwitch()
                 }
               }}
               className="network-select"
@@ -96,7 +98,7 @@ export function Header() {
                     {address ? `${address.slice(0, 6)}...${address.slice(-4)}` : 'Unknown'}
                   </span>
                   <span className="network">
-                    {activeChain?.id && getNetworkName(activeChain.id)}
+                    {selectedNetworkId && getNetworkName(selectedNetworkId)}
                   </span>
                 </div>
                 <button onClick={handleDisconnect} className="disconnect-btn">

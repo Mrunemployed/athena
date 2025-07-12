@@ -1,4 +1,4 @@
-import { useAppKitAccount, useAppKitNetwork, useAppKitState } from '@reown/appkit/react'
+import { useAppKitAccount, useAppKitState } from '@reown/appkit/react'
 
 
 export interface WalletState {
@@ -10,11 +10,11 @@ export interface WalletState {
 
 export function useWallet(namespace?: 'eip155' | 'solana'): WalletState {
   const { address, isConnected, caipAddress } = useAppKitAccount({ namespace })
-  const { activeChain } = useAppKitState()
+  const { selectedNetworkId } = useAppKitState()
 
+  // Extract chainId from caipAddress or selectedNetworkId
+  const chainId = caipAddress ? caipAddress.split(':')[1] : selectedNetworkId
 
-  // Extract chainId from caipAddress or activeChain
-  const chainId = caipAddress ? caipAddress.split(':')[1] : activeChain?.id
 
   return {
     address,
