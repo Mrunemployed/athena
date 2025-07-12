@@ -123,7 +123,7 @@ class Providers:
         if provider_requested.interface.supported_chains:
             return provider_requested.interface
         else:
-            self.load_providers()
+            await self.load_providers()
             return provider_requested.interface
     
     async def load_providers(self):
