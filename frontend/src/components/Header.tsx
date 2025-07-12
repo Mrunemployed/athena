@@ -4,6 +4,8 @@ import { useAppKit, useAppKitState, useDisconnect } from '@reown/appkit/react'
 import { networks } from '../config'
 import { useWallet } from '../hooks/useWallet'
 import './Header.css'
+import { useState } from 'react';
+import { AssetsPanel } from './AssetsPanel';
 
 export function Header() {
   const { open } = useAppKit()
@@ -12,6 +14,7 @@ export function Header() {
 
   const { disconnect } = useDisconnect()
   const { isConnected, address, namespace } = useWallet()
+  const [showAssets, setShowAssets] = useState(false);
 
   const handleConnect = (chainType: 'eip155' | 'solana') => {
     open({ view: 'Connect', namespace: chainType })
@@ -71,6 +74,11 @@ export function Header() {
             </select>
           </div>
 
+          {/* Assets Button */}
+          <button className="assets-btn" onClick={() => setShowAssets(v => !v)}>
+            {showAssets ? 'Hide Assets' : 'Assets'}
+          </button>
+
           {/* Wallet Connection */}
           <div className="wallet-section">
             {!isConnected ? (
@@ -109,6 +117,7 @@ export function Header() {
           </div>
         </div>
       </div>
+      {showAssets && <AssetsPanel />}
     </header>
   )
 } 
