@@ -9,6 +9,8 @@ services:
       - RELAY_BASE_URL=${RELAY_BASE_URL:-https://api.relay.link}
       - ALCHEMY_API_KEY=${ALCHEMY_API_KEY:-ECNFancOj9oOMYrqcfg58m5wS0qFWXdh}
       - LOG_LEVEL=${LOG_LEVEL:-DEBUG}
+    env_file:
+      - .env
     depends_on:
       - mongo
       - redis 
