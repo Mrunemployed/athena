@@ -8,3 +8,4 @@ python-dotenv
 base58
 pathlib
 aiohttp
+asyncio
