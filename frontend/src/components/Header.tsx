@@ -1,4 +1,6 @@
+
 import { useAppKit, useAppKitState, useDisconnect } from '@reown/appkit/react'
+
 import { networks } from '../config'
 import { useWallet } from '../hooks/useWallet'
 import './Header.css'
@@ -7,7 +9,9 @@ import { AssetsPanel } from './AssetsPanel';
 
 export function Header() {
   const { open } = useAppKit()
+
   const { selectedNetworkId } = useAppKitState()
+
   const { disconnect } = useDisconnect()
   const { isConnected, address, namespace } = useWallet()
   const [showAssets, setShowAssets] = useState(false);
