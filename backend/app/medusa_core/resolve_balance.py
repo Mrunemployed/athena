@@ -138,8 +138,7 @@ class WalletBalance:
         self,
     ):
         self._rpc_provider_name = "Alchemy"
-        loop = asyncio.get_event_loop()
-        self._supported_providers = asyncio.run_coroutine_threadsafe(providers.get_provider(),loop)
+        self._supported_providers = None
         self._project_id = ALCHEMY_API_KEY
         self._supported_networks:dict = self.supported_networks()
         self._metadata : dict = self._load_metadata()
@@ -251,6 +250,7 @@ class WalletBalance:
         self,
         wallet_addr:str
     ):
+        self._supported_providers = await providers.get_provider()
         balances = await self.run_in_pool(wallet_addr)
         refined = []
         for balance in balances:
