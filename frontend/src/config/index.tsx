@@ -2,6 +2,7 @@ import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
 import { mainnet, arbitrum, solana, solanaDevnet, solanaTestnet, } from '@reown/appkit/networks'
 import type { AppKitNetwork } from '@reown/appkit/networks'
 import { SolanaAdapter } from '@reown/appkit-adapter-solana/react'
+import { cookieStorage, createStorage } from 'wagmi'
 
 
 // Get projectId from https://cloud.reown.com
@@ -24,7 +25,9 @@ export const networks = [mainnet, arbitrum, solana, solanaDevnet, solanaTestnet]
 //Set up the Wagmi Adapter (Config)
 export const wagmiAdapter = new WagmiAdapter({
   projectId,
-  networks
+  networks,
+  storage: createStorage({ storage: cookieStorage }), // Use cookieStorage for SSR
+  ssr: true, // Enable SSR support
 })
 
 // Set up Solana Adapter
