@@ -15,7 +15,7 @@ from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
 from app.models import SwapMetric
 from dotenv import load_dotenv
-
+from app.medusa_core.resolve_balance import WalletBalance
 from app.medusa_core.relay import (
     get_quote as relay_get_quote,
     execute_route,
@@ -199,7 +199,10 @@ def create_swap(req: SwapRequest):
         steps.append(info)
     return {"status": "success", "ok":True, "steps": quote.get('steps'), "swap_id": swap_id, "fees":quote.get("fees"), "details":quote.get("details")}
 
-
+@app.get("/balances{walletAddress}")
+async def fetch_balances(walletAddress:str):
+    wb = WalletBalance()
+    return await wb.resolve_balances(walletAddress)
 
 @app.get("/swap/{swap_id}")
 def get_swap(swap_id: str):

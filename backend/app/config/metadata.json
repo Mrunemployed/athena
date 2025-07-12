@@ -1,0 +1,643 @@
+{
+    "0x4d224452801aced8b2f0aebe155379bb5d594381": {
+        "address": "0x4d224452801aced8b2f0aebe155379bb5d594381",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/1/light.png",
+        "symbol": "APE"
+    },
+    "0x4dc26fc5854e7648a064a4abd590bbe71724c277": {
+        "address": "0x4dc26fc5854e7648a064a4abd590bbe71724c277",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/1/light.png",
+        "symbol": "ANIME"
+    },
+    "0x4c1746a800d224393fe2470c70a35717ed4ea5f1": {
+        "address": "0x4c1746a800d224393fe2470c70a35717ed4ea5f1",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/1/light.png",
+        "symbol": "PLUME"
+    },
+    "0x12c88a3c30a7aabc1dd7f2c08a97145f5dccd830": {
+        "address": "0x12c88a3c30a7aabc1dd7f2c08a97145f5dccd830",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/1/light.png",
+        "symbol": "G7"
+    },
+    "0xb5130f4767ab0acc579f25a76e8f9e977cb3f948": {
+        "address": "0xb5130f4767ab0acc579f25a76e8f9e977cb3f948",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/42170/light.png",
+        "symbol": "GOD"
+    },
+    "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf": {
+        "address": "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf",
+        "decimal": 8,
+        "icon": "https://assets.relay.link/icons/42161/light.png",
+        "symbol": "cbBTC"
+    },
+    "0xccccb68e1a848cbdb5b60a974e07aae143ed40c3": {
+        "address": "0xccccb68e1a848cbdb5b60a974e07aae143ed40c3",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/1/light.png",
+        "symbol": "TOPIA"
+    },
+    "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599": {
+        "address": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+        "decimal": 8,
+        "icon": "https://assets.relay.link/icons/1/light.png",
+        "symbol": "WBTC"
+    },
+    "0x429f0d8233e517f9acf6f0c8293bf35804063a83": {
+        "address": "0x429f0d8233e517f9acf6f0c8293bf35804063a83",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/1/light.png",
+        "symbol": "POWER"
+    },
+    "0xed35af169af46a02ee13b9d79eb57d6d68c1749e": {
+        "address": "0xed35af169af46a02ee13b9d79eb57d6d68c1749e",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/1/light.png",
+        "symbol": "OMI"
+    },
+    "0x6b175474e89094c44da98b954eedeac495271d0f": {
+        "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/1/light.png",
+        "symbol": "DAI"
+    },
+    "0x9f52c8ecbee10e00d9faaac5ee9ba0ff6550f511": {
+        "address": "0x9f52c8ecbee10e00d9faaac5ee9ba0ff6550f511",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/1/light.png",
+        "symbol": "SIPHER"
+    },
+    "0x9c7beba8f6ef6643abd725e45a4e8387ef260649": {
+        "address": "0x9c7beba8f6ef6643abd725e45a4e8387ef260649",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/56/light.png",
+        "symbol": "G"
+    },
+    "0xdac17f958d2ee523a2206206994597c13d831ec7": {
+        "address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/1/light.png",
+        "symbol": "USDT"
+    },
+    "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+        "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/1/light.png",
+        "symbol": "USDC"
+    },
+    "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2": {
+        "address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/1/light.png",
+        "symbol": "WETH"
+    },
+    "0x94b008aa00579c1307b0ef2c499ad98a8ce58e58": {
+        "address": "0x94b008aa00579c1307b0ef2c499ad98a8ce58e58",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/10/light.png",
+        "symbol": "USDT"
+    },
+    "0xb94944669f7967e16588e55ac41be0d5ef399dcd": {
+        "address": "0xb94944669f7967e16588e55ac41be0d5ef399dcd",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/10/light.png",
+        "symbol": "SIPHER"
+    },
+    "0x68f180fcce6836688e9084f035309e29bf0a2095": {
+        "address": "0x68f180fcce6836688e9084f035309e29bf0a2095",
+        "decimal": 8,
+        "icon": "https://assets.relay.link/icons/10/light.png",
+        "symbol": "WBTC"
+    },
+    "0x4200000000000000000000000000000000000006": {
+        "address": "0x4200000000000000000000000000000000000006",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/57073/light.png",
+        "symbol": "WETH"
+    },
+    "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1": {
+        "address": "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/10/light.png",
+        "symbol": "DAI"
+    },
+    "0x0b2c639c533813f4aa9d7837caf62653d097ff85": {
+        "address": "0x0b2c639c533813f4aa9d7837caf62653d097ff85",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/10/light.png",
+        "symbol": "USDC"
+    },
+    "0xc21223249ca28397b4b6541dffaecc539bff0c59": {
+        "address": "0xc21223249ca28397b4b6541dffaecc539bff0c59",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/25/light.png",
+        "symbol": "USDC"
+    },
+    "0x0555e30da8f98308edb960aa94c0db47230d2b9c": {
+        "address": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+        "decimal": 8,
+        "icon": "https://assets.relay.link/icons/8453/light.png",
+        "symbol": "WBTC"
+    },
+    "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d": {
+        "address": "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/56/light.png",
+        "symbol": "USDC"
+    },
+    "0x55d398326f99059ff775485246999027b3197955": {
+        "address": "0x55d398326f99059ff775485246999027b3197955",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/56/light.png",
+        "symbol": "USDT"
+    },
+    "0x1af3f329e8be154074d8769d1ffa4ee058b1dbc3": {
+        "address": "0x1af3f329e8be154074d8769d1ffa4ee058b1dbc3",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/56/light.png",
+        "symbol": "DAI"
+    },
+    "0x2a22f9c3b484c3629090feed35f17ff8f88f76f0": {
+        "address": "0x2a22f9c3b484c3629090feed35f17ff8f88f76f0",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/100/light.png",
+        "symbol": "USDC"
+    },
+    "0x078d782b760474a361dda0af3839290b0ef57ad6": {
+        "address": "0x078d782b760474a361dda0af3839290b0ef57ad6",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/130/light.png",
+        "symbol": "USDC"
+    },
+    "0xc2132d05d31c914a87c6611c10748aeb04b58e8f": {
+        "address": "0xc2132d05d31c914a87c6611c10748aeb04b58e8f",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/137/light.png",
+        "symbol": "USDT"
+    },
+    "0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6": {
+        "address": "0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6",
+        "decimal": 8,
+        "icon": "https://assets.relay.link/icons/137/light.png",
+        "symbol": "WBTC"
+    },
+    "0x8f3cf7ad23cd3cadbd9735aff958023239c6a063": {
+        "address": "0x8f3cf7ad23cd3cadbd9735aff958023239c6a063",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/137/light.png",
+        "symbol": "DAI"
+    },
+    "0x2791bca1f2de4661ed88a30c99a7a9449aa84174": {
+        "address": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/137/light.png",
+        "symbol": "USDC.e"
+    },
+    "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359": {
+        "address": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/137/light.png",
+        "symbol": "USDC"
+    },
+    "0x29219dd400f2bf60e5a23d13be72b486d4038894": {
+        "address": "0x29219dd400f2bf60e5a23d13be72b486d4038894",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/146/light.png",
+        "symbol": "USDC"
+    },
+    "0x0000000000000000000000000000000000000000": {
+        "address": "0x0000000000000000000000000000000000000000",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/1380012617/light.png",
+        "symbol": "ETH"
+    },
+    "0xdeaddeaddeaddeaddeaddeaddeaddeaddead0000": {
+        "address": "0xdeaddeaddeaddeaddeaddeaddeaddeaddead0000",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/288/light.png",
+        "symbol": "WETH"
+    },
+    "0x5aea5775959fbc2557cc8789bc1bf90a239d9a91": {
+        "address": "0x5aea5775959fbc2557cc8789bc1bf90a239d9a91",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/324/light.png",
+        "symbol": "WETH"
+    },
+    "0x675c3ce7f43b00045a4dab954af36160fb57cb45": {
+        "address": "0x675c3ce7f43b00045a4dab954af36160fb57cb45",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/466/light.png",
+        "symbol": "USDC"
+    },
+    "0x79a02482a880bce3f13e09da970dc34db4cd24d1": {
+        "address": "0x79a02482a880bce3f13e09da970dc34db4cd24d1",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/480/light.png",
+        "symbol": "USDC.e"
+    },
+    "0xf1815bd50389c46847f0bda824ec8da914045d14": {
+        "address": "0xf1815bd50389c46847f0bda824ec8da914045d14",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/1514/light.png",
+        "symbol": "USDC"
+    },
+    "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb": {
+        "address": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/999/light.png",
+        "symbol": "USD\u20ae0"
+    },
+    "0x420000000000000000000000000000000000000a": {
+        "address": "0x420000000000000000000000000000000000000a",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/1088/light.png",
+        "symbol": "WETH"
+    },
+    "0x4f9a0e7fd2bf6067db6994cf12e4495df938e6e9": {
+        "address": "0x4f9a0e7fd2bf6067db6994cf12e4495df938e6e9",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/1101/light.png",
+        "symbol": "WETH"
+    },
+    "0xa8ce8aee21bc2a48a5ef670afcc9274c7bbbc035": {
+        "address": "0xa8ce8aee21bc2a48a5ef670afcc9274c7bbbc035",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/1101/light.png",
+        "symbol": "USDC"
+    },
+    "0x3894085ef7ff0f0aedf52e2a2704928d1ec074f1": {
+        "address": "0x3894085ef7ff0f0aedf52e2a2704928d1ec074f1",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/1329/light.png",
+        "symbol": "USDC"
+    },
+    "0x00000000000000000000000000000000": {
+        "address": "0x00000000000000000000000000000000",
+        "decimal": 8,
+        "icon": "https://assets.relay.link/icons/1337/light.png",
+        "symbol": "USDC"
+    },
+    "0x39cd9ef9e511ec008247ad5da01245d84a9521be": {
+        "address": "0x39cd9ef9e511ec008247ad5da01245d84a9521be",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/1424/light.png",
+        "symbol": "USDC"
+    },
+    "0xbab93b7ad7fe8692a878b95a8e689423437cc500": {
+        "address": "0xbab93b7ad7fe8692a878b95a8e689423437cc500",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/1514/light.png",
+        "symbol": "WETH"
+    },
+    "0xba9986d2381edf1da03b0b9c1f8b00dc4aacc369": {
+        "address": "0xba9986d2381edf1da03b0b9c1f8b00dc4aacc369",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/1868/light.png",
+        "symbol": "USDC.e"
+    },
+    "0x0b7007c13325c48911f73a2dad5fa5dcbf808adc": {
+        "address": "0x0b7007c13325c48911f73a2dad5fa5dcbf808adc",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/2020/light.png",
+        "symbol": "USDC"
+    },
+    "0x401ecb1d350407f13ba348573e5630b83638e30d": {
+        "address": "0x401ecb1d350407f13ba348573e5630b83638e30d",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/69000/light.png",
+        "symbol": "USDC"
+    },
+    "0x84a71ccd554cc1b02749b35d22f684cc8ec987e1": {
+        "address": "0x84a71ccd554cc1b02749b35d22f684cc8ec987e1",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/2741/light.png",
+        "symbol": "USDC"
+    },
+    "0x9ebe3a824ca958e4b3da772d2065518f009cba62": {
+        "address": "0x9ebe3a824ca958e4b3da772d2065518f009cba62",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/2741/light.png",
+        "symbol": "PENGU"
+    },
+    "0x09bc4e0d864854c6afb6eb9a9cdf58ac190d0df9": {
+        "address": "0x09bc4e0d864854c6afb6eb9a9cdf58ac190d0df9",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/5000/light.png",
+        "symbol": "USDC"
+    },
+    "0x2af198a85f9aa11cd6042a0596fbf23978514da3": {
+        "address": "0x2af198a85f9aa11cd6042a0596fbf23978514da3",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/8333/light.png",
+        "symbol": "USDC"
+    },
+    "0xfde4c96c8593536e31f229ea8f37b2ada2699bb2": {
+        "address": "0xfde4c96c8593536e31f229ea8f37b2ada2699bb2",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/8453/light.png",
+        "symbol": "USDT"
+    },
+    "0x4ed4e862860bed51a9570b96d89af5e1b0efefed": {
+        "address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/8453/light.png",
+        "symbol": "DEGEN"
+    },
+    "0xc9ef0e04038f64d6f759bd73b4b1cb6c78c59daa": {
+        "address": "0xc9ef0e04038f64d6f759bd73b4b1cb6c78c59daa",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/8453/light.png",
+        "symbol": "POP"
+    },
+    "0xb676f87a6e701f0de8de5ab91b56b66109766db1": {
+        "address": "0xb676f87a6e701f0de8de5ab91b56b66109766db1",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/8453/light.png",
+        "symbol": "LRDS"
+    },
+    "0x4fc5bfa57e14071ad8b58ba04f9411ae43d6eb3f":{
+        "address": "0x4fc5bfa57e14071ad8b58ba04f9411ae43d6eb3f",
+        "decimal": 18,
+        "symbol": "POL"
+    },
+    "0x3792dbdd07e87413247df995e692806aa13d3299": {
+        "address": "0x3792dbdd07e87413247df995e692806aa13d3299",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/8453/light.png",
+        "symbol": "OMI"
+    },
+    "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913": {
+        "address": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/8453/light.png",
+        "symbol": "USDC"
+    },
+    "0x50c5725949a6f0c72e6c4a641f24049a917db0cb": {
+        "address": "0x50c5725949a6f0c72e6c4a641f24049a917db0cb",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/8453/light.png",
+        "symbol": "DAI"
+    },
+    "0xd0d1e44fc9adaeb732f73ffc2429cd1db9cd4529": {
+        "address": "0xd0d1e44fc9adaeb732f73ffc2429cd1db9cd4529",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/8453/light.png",
+        "symbol": "SIPHER"
+    },
+    "0xcf800f4948d16f23333508191b1b1591daf70438": {
+        "address": "0xcf800f4948d16f23333508191b1b1591daf70438",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/33139/light.png",
+        "symbol": "ApeETH"
+    },
+    "0x747459b4b46453bcf52d27e7e243e40305238ef5": {
+        "address": "0x747459b4b46453bcf52d27e7e243e40305238ef5",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/33979/light.png",
+        "symbol": "USDC"
+    },
+    "0xcdf4cf03add9b9c086e01868d2eb8526b96df58f": {
+        "address": "0xcdf4cf03add9b9c086e01868d2eb8526b96df58f",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/33979/light.png",
+        "symbol": "USDT"
+    },
+    "0x7d8b6cec10165119c4ac7843a1e02184789585d8": {
+        "address": "0x7d8b6cec10165119c4ac7843a1e02184789585d8",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/33979/light.png",
+        "symbol": "SIPHER"
+    },
+    "0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f": {
+        "address": "0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f",
+        "decimal": 8,
+        "icon": "https://assets.relay.link/icons/42161/light.png",
+        "symbol": "WBTC"
+    },
+    "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9": {
+        "address": "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/42161/light.png",
+        "symbol": "USDT"
+    },
+    "0x4cb9a7ae498cedcbb5eae9f25736ae7d428c9d66": {
+        "address": "0x4cb9a7ae498cedcbb5eae9f25736ae7d428c9d66",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/42161/light.png",
+        "symbol": "XAI"
+    },
+    "0xf18e4466f26b4ca55bbab890b314a54976e45b17": {
+        "address": "0xf18e4466f26b4ca55bbab890b314a54976e45b17",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/42161/light.png",
+        "symbol": "G7"
+    },
+    "0x37a645648df29205c6261289983fb04ecd70b4b3": {
+        "address": "0x37a645648df29205c6261289983fb04ecd70b4b3",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/42161/light.png",
+        "symbol": "ANIME"
+    },
+    "0xaf88d065e77c8cc2239327c5edb3a432268e5831": {
+        "address": "0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/42161/light.png",
+        "symbol": "USDC"
+    },
+    "0x8b0e6f19ee57089f7649a455d89d7bc6314d04e8": {
+        "address": "0x8b0e6f19ee57089f7649a455d89d7bc6314d04e8",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/42161/light.png",
+        "symbol": "DMT"
+    },
+    "0x7f9fbf9bdd3f4105c478b996b648fe6e828a1e98": {
+        "address": "0x7f9fbf9bdd3f4105c478b996b648fe6e828a1e98",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/42161/light.png",
+        "symbol": "APE"
+    },
+    "0x82af49447d8a07e3bd95bd0d56f35241523fbab1": {
+        "address": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/42161/light.png",
+        "symbol": "WETH"
+    },
+    "0xceba9300f2b948710d2653dd7b07f33a8b32118c": {
+        "address": "0xceba9300f2b948710d2653dd7b07f33a8b32118c",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/42220/light.png",
+        "symbol": "USDC"
+    },
+    "0x26debd39d5ed069770406fca10a0e4f8d2c743eb": {
+        "address": "0x26debd39d5ed069770406fca10a0e4f8d2c743eb",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/43114/light.png",
+        "symbol": "GUN"
+    },
+    "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e": {
+        "address": "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/43114/light.png",
+        "symbol": "USDC"
+    },
+    "0xe5d7c2a44ffddf6b295a15c148167daaaf5cf34f": {
+        "address": "0xe5d7c2a44ffddf6b295a15c148167daaaf5cf34f",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/59144/light.png",
+        "symbol": "WETH"
+    },
+    "0x176211869ca2b568f2a7d4ee941e073a821ee1ff": {
+        "address": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/59144/light.png",
+        "symbol": "USDC"
+    },
+    "0xa219439258ca9da29e9cc4ce5596924745e12b93": {
+        "address": "0xa219439258ca9da29e9cc4ce5596924745e12b93",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/59144/light.png",
+        "symbol": "USDT"
+    },
+    "0x77684a04145a5924efce0d92a7c4a2a2e8c359de": {
+        "address": "0x77684a04145a5924efce0d92a7c4a2a2e8c359de",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/70700/light.png",
+        "symbol": "WETH"
+    },
+    "0x549943e04f40284185054145c6e4e9568c1d3241": {
+        "address": "0x549943e04f40284185054145c6e4e9568c1d3241",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/80094/light.png",
+        "symbol": "USDC"
+    },
+    "0x2f6f07cdcf3588944bf4c42ac74ff24bf56e7590": {
+        "address": "0x2f6f07cdcf3588944bf4c42ac74ff24bf56e7590",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/80094/light.png",
+        "symbol": "WETH"
+    },
+    "0x4300000000000000000000000000000000000004": {
+        "address": "0x4300000000000000000000000000000000000004",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/81457/light.png",
+        "symbol": "WETH"
+    },
+    "0x78add880a697070c1e765ac44d65323a0dcce913": {
+        "address": "0x78add880a697070c1e765ac44d65323a0dcce913",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/98866/light.png",
+        "symbol": "USDC"
+    },
+    "0xca59ca09e5602fae8b629dee83ffa819741f14be": {
+        "address": "0xca59ca09e5602fae8b629dee83ffa819741f14be",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/98866/light.png",
+        "symbol": "WETH"
+    },
+    "0xdddd73f5df1f0dc31373357beac77545dc5a6f3f": {
+        "address": "0xdddd73f5df1f0dc31373357beac77545dc5a6f3f",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/98866/light.png",
+        "symbol": "pUSD"
+    },
+    "0xa51894664a773981c6c112c43ce576f315d5b1b6": {
+        "address": "0xa51894664a773981c6c112c43ce576f315d5b1b6",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/167000/light.png",
+        "symbol": "WETH"
+    },
+    "0x5300000000000000000000000000000000000004": {
+        "address": "0x5300000000000000000000000000000000000004",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/534352/light.png",
+        "symbol": "WETH"
+    },
+    "0x6a6394f47dd0baf794808f2749c09bd4ee874e70": {
+        "address": "0x6a6394f47dd0baf794808f2749c09bd4ee874e70",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/543210/light.png",
+        "symbol": "USDC"
+    },
+    "0x203a662b0bd271a6ed5a60edfbd04bfce608fd36": {
+        "address": "0x203a662b0bd271a6ed5a60edfbd04bfce608fd36",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/747474/light.png",
+        "symbol": "USDC"
+    },
+    "0x2dca96907fde857dd3d816880a0df407eeb2d2f2": {
+        "address": "0x2dca96907fde857dd3d816880a0df407eeb2d2f2",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/747474/light.png",
+        "symbol": "USDT"
+    },
+    "0x0913da6da4b42f538b445599b46bb4622342cf52": {
+        "address": "0x0913da6da4b42f538b445599b46bb4622342cf52",
+        "decimal": 8,
+        "icon": "https://assets.relay.link/icons/747474/light.png",
+        "symbol": "WBTC"
+    },
+    "0xcccccccc7021b32ebb4e8c08314bd62f7c653ec4": {
+        "address": "0xcccccccc7021b32ebb4e8c08314bd62f7c653ec4",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/7777777/light.png",
+        "symbol": "USDzC"
+    },
+    "bc1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqmql8k8": {
+        "address": "bc1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqmql8k8",
+        "decimal": 8,
+        "icon": "https://assets.relay.link/icons/8253038/light.png",
+        "symbol": "BTC"
+    },
+    "11111111111111111111111111111111": {
+        "address": "11111111111111111111111111111111",
+        "decimal": 9,
+        "icon": "https://assets.relay.link/icons/9286185/light.png",
+        "symbol": "ETH"
+    },
+    "ExYxyorY2x3h8gLcuypnHFQV3F36rmMkQVn7HHV8KjtA": {
+        "address": "ExYxyorY2x3h8gLcuypnHFQV3F36rmMkQVn7HHV8KjtA",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/9286186/light.png",
+        "symbol": "USDC"
+    },
+    "742wcXVzkhNuEePAot7L3GvPseh93pvYFPgyHLX8mUy9": {
+        "address": "742wcXVzkhNuEePAot7L3GvPseh93pvYFPgyHLX8mUy9",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/9286186/light.png",
+        "symbol": "USDT"
+    },
+    "0xdf0b24095e15044538866576754f3c964e902ee6": {
+        "address": "0xdf0b24095e15044538866576754f3c964e902ee6",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/21000000/light.png",
+        "symbol": "USDC"
+    },
+    "0xda5ddd7270381a7c2717ad10d1c0ecb19e3cdfb2": {
+        "address": "0xda5ddd7270381a7c2717ad10d1c0ecb19e3cdfb2",
+        "decimal": 18,
+        "icon": "https://assets.relay.link/icons/21000000/light.png",
+        "symbol": "WBTCN"
+    },
+    "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t": {
+        "address": "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/728126428/light.png",
+        "symbol": "USDT"
+    },
+    "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv": {
+        "address": "2zMMhcVQEXDtdE6vsFS7S7D5oUodfJHE8vd1gnBouauv",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/792703809/light.png",
+        "symbol": "PENGU"
+    },
+    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v": {
+        "address": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "decimal": 6,
+        "icon": "https://assets.relay.link/icons/792703809/light.png",
+        "symbol": "USDC"
+    }
+}
