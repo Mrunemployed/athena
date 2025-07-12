@@ -199,7 +199,7 @@ def create_swap(req: SwapRequest):
         steps.append(info)
     return {"status": "success", "ok":True, "steps": quote.get('steps'), "swap_id": swap_id, "fees":quote.get("fees"), "details":quote.get("details")}
 
-@app.get("/balances{walletAddress}")
+@app.get("/balances/{walletAddress}")
 async def fetch_balances(walletAddress:str):
     result = await BalanceProvider.resolve_balances(walletAddress)
     print(result)
