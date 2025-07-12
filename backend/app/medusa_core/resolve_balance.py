@@ -116,7 +116,7 @@ class Providers:
     def __init__(self):
         self._providers = {'relay': relay()}
 
-    def get_provider(self,provider:str='relay') -> interface:
+    async def get_provider(self,provider:str='relay') -> interface:
         if provider not in self._providers:
             return None
         provider_requested = self._providers.get(provider)
@@ -126,9 +126,9 @@ class Providers:
             self.load_providers()
             return provider_requested.interface
     
-    def load_providers(self):
+    async def load_providers(self):
         for key,connector in self._providers.items():
-            asyncio.run(connector.setup())
+            await connector.setup()
 
 providers = Providers()
 providers.load_providers()
@@ -138,7 +138,8 @@ class WalletBalance:
         self,
     ):
         self._rpc_provider_name = "Alchemy"
-        self._supported_providers = providers.get_provider()
+        loop = asyncio.get_event_loop()
+        self._supported_providers = loop.run_until_complete(providers.get_provider())
         self._project_id = ALCHEMY_API_KEY
         self._supported_networks:dict = self.supported_networks()
         self._metadata : dict = self._load_metadata()
