@@ -160,21 +160,6 @@
   background: #c53030;
 }
 
-.assets-btn {
-  margin-left: 1rem;
-  padding: 0.4rem 1rem;
-  background: #2a8f2a;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.assets-btn:hover {
-  background: #217a21;
-}
-
 /* Responsive design */
 @media (max-width: 768px) {
   .header-content {
