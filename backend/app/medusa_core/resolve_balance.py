@@ -215,7 +215,7 @@ class WalletBalance:
     async def call(self, chain_id:int|str, wallet_addr:str, retries=3):
         try:
             req_url = self.build_uris(str(chain_id))
-            print(req_url)
+            # print(req_url)
             if not req_url:
                 return
             async with ClientSession() as session:
@@ -236,7 +236,6 @@ class WalletBalance:
     async def run_in_pool(self, wallet_addr:str):
         network_pool = []
         for k,v in self._supported_providers.supported_chains.items():
-            print(k)
             call_future = self.call(chain_id=k, wallet_addr=wallet_addr)
             network_pool.append(call_future)
         coro_pool = await asyncio.gather(*network_pool)
@@ -254,6 +253,7 @@ class WalletBalance:
         balances = await self.run_in_pool(wallet_addr)
         refined = []
         for balance in balances:
+            print(balance)
             if balance:
                 refined.extend(balance)
         return refined
