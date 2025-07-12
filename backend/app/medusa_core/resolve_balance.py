@@ -256,6 +256,8 @@ class WalletBalance:
             if balance:
                 refined.extend(balance)
         return refined
+    
+BalanceProvider = WalletBalance()
 
 if __name__ == '__main__':
     # balanceResolver = WalletBalance()
